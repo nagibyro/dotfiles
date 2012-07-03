@@ -1,6 +1,14 @@
 "Byron's .vimrc file
+call pathogen#runtime_append_all_bundles()
+call pathogen#helptags()
+
+
 filetype off
-filetype plugin indent on
+
+if has("autocmd")
+    filetype plugin indent on
+endif
+
 set nocompatible
 set modelines=0
 set tabstop=4
