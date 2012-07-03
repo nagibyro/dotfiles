@@ -1,0 +1,7 @@
+Installation
+
+	git clone
+
+Create Symlinks
+	
+	ln -s ~/.vim/vimrc ~/.vimrc
