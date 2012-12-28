@@ -1,10 +1,11 @@
 "Byron's .vimrc file
-call pathogen#runtime_append_all_bundles()
-call pathogen#helptags()
+call pathogen#infect()
 
 filetype off
 filetype plugin indent on
+syntax on
 
+set background=dark
 set nocompatible
 set modelines=0
 set tabstop=4
@@ -32,7 +33,7 @@ set history=1000
 set undolevels=1000
 set pastetoggle=<F2>
 
-set wrap
+set nowrap
 set textwidth=79
 set formatoptions=qrn1
 
