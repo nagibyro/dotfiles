@@ -31,3 +31,4 @@ alias apacheStart='sudo /etc/init.d/apache2 start'
 alias apacheStop='sudo /etc/init.d/apache2 stop'
 
 export EDITOR=/usr/bin/vim
+PS1="\e[0;31m[\u@\h]\e[0;34m \w: \e[m"
