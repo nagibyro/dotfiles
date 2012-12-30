@@ -22,6 +22,7 @@ alias b='cd ..'
 alias s='sudo'
 alias ll='ls -l'
 alias la='ls -a'
+alias home='cd ~/'
 
 #apache aliases
 alias apacheCheck='/usr/sbin/apache2ctl configtest'
