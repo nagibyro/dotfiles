@@ -19,10 +19,22 @@ fi
 
 #navigation
 alias b='cd ..'
-alias s='sudo'
+alias bb='cd ../..'
+alias bbb='cd ../../..'
+alias home='cd ~/'
+
+#listing
 alias ll='ls -l'
 alias la='ls -a'
-alias home='cd ~/'
+
+#sudo
+alias s='sudo'
+alias svim='sudo vim'
+alias svi='sudo vi'
+
+#vim default
+alias vi=vim
+alias edit='vim'
 
 #apache aliases
 alias apacheCheck='/usr/sbin/apache2ctl configtest'
