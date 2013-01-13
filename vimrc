@@ -44,11 +44,6 @@ set incsearch
 set showmatch
 set hlsearch
 
-"syntastic plugin options
-let g:syntastic_mode_map = { "mode": "passive",
-                            \ "active_filetypes": [],
-                            \ "passive_filetyes": ["javascript"] }
-
 "folding settings
 " set foldmethod=indent   "fold based on indent
 " set foldnestmax=10      "deepest fold is 10 levels
