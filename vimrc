@@ -44,6 +44,12 @@ set incsearch
 set showmatch
 set hlsearch
 
+:nmap \l :setlocal number!<CR>
+:nmap \o :set paste!<CR>
+
+:nmap j gj
+:nmap k gk
+
 "folding settings
 " set foldmethod=indent   "fold based on indent
 " set foldnestmax=10      "deepest fold is 10 levels
