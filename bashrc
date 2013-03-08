@@ -25,7 +25,7 @@ alias home='cd ~/'
 
 #listing
 alias ll='ls -l'
-alias la='ls -a'
+alias la='ls -a -l'
 
 #sudo
 alias s='sudo'
