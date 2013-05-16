@@ -1,0 +1,27 @@
+#VIM
+.*.swo
+.*.swp
+tags
+
+#NETBEANS
+nbproject
+
+#CVS
+CVS
+.cvsignore
+
+#TEXTMATE
+.#*
+
+PHPSTORM
+.idea
+
+#OS X
+
+.DS_Store
+
+._*
+
+#WINDOWS
+
+Thumbs.db
