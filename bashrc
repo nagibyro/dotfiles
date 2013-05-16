@@ -3,7 +3,10 @@ if [ -f /etc/bashrc ]; then
     . /etc/bashrc
 fi
 
-# Put your fun stuff here.
+#ql specific
+alias myql='cd ~/www/myqlv2/'
+
+#Put your fun stuff here.
 export LS_OPTIONS='--color=auto'
 export CLICOLOR='Yes'
 
