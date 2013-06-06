@@ -1,0 +1,8 @@
+# ql specific
+if [ -f /etc/bashrc ]; then
+    . /etc/bashrc
+fi
+
+alias myql='cd ~/www/myqlv2/'
+alias ql4='cd ~/www/quickenloans4/'
+
