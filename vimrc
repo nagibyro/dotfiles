@@ -1,5 +1,4 @@
 "Byron's .vimrc file
-#call pathogen#infect()
 
 filetype off
 filetype plugin indent on
