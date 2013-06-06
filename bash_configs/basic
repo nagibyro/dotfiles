@@ -9,7 +9,6 @@ alias bbb='cd ../../..'
 alias home='cd /home/bnagi/'
 
 #listing
-alias ls='ls --color'
 alias ll='ls -l'
 alias la='ls -a -l'
 

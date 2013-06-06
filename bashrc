@@ -1,2 +1,2 @@
-source bash_configs/ql_specific
-source bash_configs/basic
+source ~/dotfiles/bash_configs/ql_specific
+source ~/dotfiles/bash_configs/basic
