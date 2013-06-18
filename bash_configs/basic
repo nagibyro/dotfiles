@@ -25,4 +25,4 @@ alias edit='vim'
 alias acheck='/usr/sbin/apachectl configtest'
 
 export EDITOR=/usr/bin/vim
-PS1="\[\e[0;31m[\u@\h]\e[0;34m \w: \e[m"
+PS1="\[\e[1;37m\][\u@\h]\[\e[1;35m\] \w: \[\e[0;36m\]"
