@@ -9,7 +9,7 @@ let mapleader = ","
 
 "nerdtree
 "open nerdtree when opening a file
-autocmd VimEnter * NERDTree
+"autocmd VimEnter * NERDTree
 
 "if nerdtree is the only open window quit
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
@@ -18,7 +18,7 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTree
 autocmd vimenter * if !argc() | NERDTree | endif
 
 let NERDTreeShowBookmarks=1
-let NERDTreeIgnore=['\.pyc', '\~$', '\.swo$', '\swp$', '\.git', '\.hg', '\.svn', '\.bzr']
+let NERDTreeIgnore=['\.pyc', '\~$', '\.swo$', '\swp$', '\.git', '\.hg', '\.svn', '\.bzr', '\.DS_Store', '\._.DS_Store']
 let NERDTreeChDirMode=0
 let NERDTreeQuitOnOpen=1
 let NERDTreeMouseMode=2
