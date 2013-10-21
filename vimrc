@@ -97,6 +97,13 @@ noremap ^ g^
 
 nnoremap Y y$
 
+"this adds functionality so that opening and closing parens are created 
+inoremap        (   ()<Left>
+inoremap <expr> )  strpart(getline('.'), col('.')-1, 1) == ")" ? "\<Right>" : ")"
+inoremap {      {}<Left>
+inoremap {<CR>  {<CR>}<Esc>O
+inoremap {{     {
+inoremap {}     {}
 
 "folding settings
 set foldenable 
