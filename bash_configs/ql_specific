@@ -5,4 +5,9 @@ fi
 
 alias myql='cd ~/www/myqlv2/'
 alias ql4='cd ~/www/quickenloans4/'
+alias npm='~/local/bin/npm'
+alias vhosts='cd /etc/httpd/vhosts.d/bnagi'
+
+alias apacheCheck='sudo /etc/init.d/httpd configtest'
+alias apacheRestart='sudo /etc/init.d/httpd restart'
 
