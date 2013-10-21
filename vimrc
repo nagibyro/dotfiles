@@ -1,8 +1,15 @@
 "Byron's .vimrc file
-
 filetype off
+call pathogen#infect()
+call pathogen#helptags()
 filetype plugin indent on
 syntax on
+
+"nerdtree
+autocmd VimEnter * NERDTree
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+autocmd vimenter * if !argc() | NERDTree | endif
+map <C-n> :NERDTreeToggle<CR>
 
 set background=dark
 set nocompatible
