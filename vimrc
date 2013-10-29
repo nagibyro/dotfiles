@@ -90,6 +90,14 @@ set hlsearch
 noremap  j gj
 noremap  k gk
 
+"open vim rc in a split window with Leader(ev) and source with Leader(sv)
+:noremap <leader>ev :vsplit $MYVIMRC<cr>
+:noremap <leader>sv :source $MYVIMRC<cr>
+
+"acts as escape in insert mode and force myself to learn it
+:inoremap <esc> <nop>
+:inoremap jk <esc>
+
 noremap $ g$
 noremap <End> g<End>
 noremap <Home>  g<Home> 
