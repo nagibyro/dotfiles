@@ -33,7 +33,7 @@ nmap <leader>nt :NERDTreeFind<CR>
 set mouse=a     "Automatically enbale mouse usage
 set mousehide   "hide mouse while typeing
 
-set virtualedit=onemore "allow for cursor byeond last character
+set virtualedit=onemore "allow for cursor beyond last character
 set history=1000 
 
 "Instead of having the cursor in the last position in the buffer
