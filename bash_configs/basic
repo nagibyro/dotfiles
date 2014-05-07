@@ -15,7 +15,7 @@ alias la='ls -a -l'
 #sudo
 alias s='sudo'
 alias svim='sudo vim'
-alias svi='sudo vi'
+alias svi='sudo vim'
 
 #vim default
 alias vi=vim
