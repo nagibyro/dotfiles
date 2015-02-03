@@ -1,0 +1,5 @@
+#!/bin/bash
+source ~/dotfiles/bash_configs/basic
+source ~/dotfiles/git-completion.bash
+
+export PATH="$HOME/bin:$HOME/opt:$PATH"
