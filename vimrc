@@ -120,3 +120,6 @@ set foldenable
 " set nofoldenable        "dont fold by default
 " set foldlevel=2         "this is just what i use
 
+"vim.go settings
+let g:go_disable_autoinstall = 1
+let g:go_fmt_autosave = 0
