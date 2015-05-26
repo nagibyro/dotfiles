@@ -16,3 +16,6 @@
 [submodule "vim/bundle/vimerl"]
 	path = vim/bundle/vimerl
 	url = https://github.com/jimenezrick/vimerl.git
+[submodule "vim/bundle/vim-airline"]
+	path = vim/bundle/vim-airline
+	url = https://github.com/bling/vim-airline
