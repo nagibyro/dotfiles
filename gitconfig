@@ -1,0 +1,30 @@
+[user]
+	email = Byronnagi@gmail.com
+	name = Byron Nagi
+[core]
+    editor = vim
+	excludesfile = /Users/bnagi/.gitignore
+[color]
+    ui = auto
+    status = auto
+[color "branch"]
+    current = yellow reverse
+    local = yellow
+    remote = magenta
+[color "diff"]
+    meta = yellow bold
+    frag = magenta bold
+    old = red reverse
+    new = green reverse
+    whitespace = white reverse
+[color "status"]
+    added = green
+    changed = yellow
+    untracked = red
+    branch = magenta
+    nobranch = red
+[log]
+    date = short
+    abbrevCommit = true
+[push]
+    default = current

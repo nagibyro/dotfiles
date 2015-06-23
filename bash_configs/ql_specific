@@ -5,8 +5,6 @@ fi
 
 alias myql='cd ~/www/myqlv2/'
 alias ql4='cd ~/www/quickenloans4/'
-alias npm='~/local/bin/npm'
 alias vhosts='cd /etc/httpd/vhosts.d/bnagi'
 alias webdv='ssh bnagi@ql2webdv1'
-
 
