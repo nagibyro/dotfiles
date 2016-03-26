@@ -123,3 +123,6 @@ set foldenable
 "vim.go settings
 let g:go_disable_autoinstall = 1
 let g:go_fmt_autosave = 0
+
+"erlang template plugin settings
+let g:erl_author = "Byron Nagi"
