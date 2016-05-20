@@ -126,3 +126,10 @@ let g:go_fmt_autosave = 0
 
 "erlang template plugin settings
 let g:erl_author = "Byron Nagi"
+
+"airline settings
+let g:airline_powerline_fonts = 1
+if !exists('g:airline_symbols')
+    let g:airline_symbols = {}
+endif
+let g:airline_symbols.space = "\ua0"
