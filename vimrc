@@ -59,8 +59,7 @@ set ttyfast
 set ruler " Always show cursor position
 set backspace=indent,eol,start
 set laststatus=2
-set nobackup
-set nowritebackup
+set backupcopy=yes 
 set noswapfile
 set history=1000
 set undolevels=1000
