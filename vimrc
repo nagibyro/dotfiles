@@ -7,6 +7,8 @@ syntax on
 
 let mapleader = ","
 
+colorscheme koehler
+
 "nerdtree
 "open nerdtree when opening a file
 "autocmd VimEnter * NERDTree
@@ -43,6 +45,8 @@ au FileType gitcommit au! BufEnter COMMIT_EDITMSG call setpos('.', [0, 1, 1, 0])
 set nu
 set winminheight=0
 
+set visualbell
+set t_vb=
 set background=dark
 set nocompatible
 set modelines=0
