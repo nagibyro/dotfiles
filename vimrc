@@ -13,6 +13,8 @@ set relativenumber
 "in the parent directory, and so on recursivly up to ~/projects
 set tags=./tags;~/projects
 
+colorscheme koehler
+
 "nerdtree
 "open nerdtree when opening a file
 "autocmd VimEnter * NERDTree
@@ -49,6 +51,8 @@ au FileType gitcommit au! BufEnter COMMIT_EDITMSG call setpos('.', [0, 1, 1, 0])
 set nu
 set winminheight=0
 
+set visualbell
+set t_vb=
 set background=dark
 set nocompatible
 set modelines=0
@@ -65,8 +69,7 @@ set ttyfast
 set ruler " Always show cursor position
 set backspace=indent,eol,start
 set laststatus=2
-set nobackup
-set nowritebackup
+set backupcopy=yes 
 set noswapfile
 set history=1000
 set undolevels=1000
