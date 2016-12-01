@@ -25,6 +25,6 @@
 [submodule "vim/bundle/vim-fugitive"]
 	path = vim/bundle/vim-fugitive
 	url = git://github.com/tpope/vim-fugitive.git
-[submodule "vim/bundle/vim-airline-datetime"]
-	path = vim/bundle/vim-airline-datetime
-	url = https://github.com/ompugao/vim-airline-datetime.git
+[submodule "vim/bundle/syntastic"]
+	path = vim/bundle/syntastic
+	url = https://github.com/scrooloose/syntastic.git

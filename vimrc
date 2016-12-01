@@ -6,6 +6,12 @@ filetype plugin indent on
 syntax on
 
 let mapleader = ","
+set relativenumber
+
+"ctags
+"this option will look for a tags file called tags in current dirctory and then
+"in the parent directory, and so on recursivly up to ~/projects
+set tags=./tags;~/projects
 
 colorscheme koehler
 
@@ -123,6 +129,16 @@ set foldenable
 " set nofoldenable        "dont fold by default
 " set foldlevel=2         "this is just what i use
 
+"Syntastic settings
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatusLineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+
 "vim.go settings
 let g:go_disable_autoinstall = 1
 let g:go_fmt_autosave = 0
@@ -132,7 +148,11 @@ let g:erl_author = "Byron Nagi"
 
 "airline settings
 let g:airline_powerline_fonts = 1
+let g:airline#extensions#syntastic#enable = 1
 if !exists('g:airline_symbols')
     let g:airline_symbols = {}
 endif
-let g:airline_symbols.space = "\ua0"
+function! AirlineInit()
+    "let g:airline_section_c = airline#section#create(['%{getcwd()}'])
+endfunction
+autocmd User AirlineAfterInit call AirlineInit()
