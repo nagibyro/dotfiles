@@ -13,6 +13,7 @@ the git-completion.bash script
 
 The vim plugin's are subtress so they should all be good to go but if you need to add more or update them use the following
 
+see [this blog post](http://endot.org/2011/05/18/git-submodules-vs-subtrees-for-vim-plugins/) for more info.
 ```bash
 # change vim-fugative to whatever module you want obviously
 # adding
