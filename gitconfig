@@ -23,6 +23,8 @@
     untracked = red
     branch = magenta
     nobranch = red
+[format]
+    pretty = format:"%C(bold red)%h%C(reset) -%C(cyan)%d%C(reset) %s %C(yellow)(%cr) %C(green)<%an>%C(reset)"
 [log]
     date = short
     abbrevCommit = true
