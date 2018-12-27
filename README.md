@@ -11,6 +11,14 @@ the git-completion.bash script
 
 ### Vim
 
-The vim plugin's are submodules so you need to make sure you run
-'git submodule init' && 'git submodule update' and symlink .vim/ with 
-dotfiles/vim/ (this will make pathogen work correctly)
+The vim plugin's are subtress so they should all be good to go but if you need to add more or update them use the following
+
+```bash
+# change vim-fugative to whatever module you want obviously
+# adding
+git subtree add --prefix vim/bundle/vim-fugitive https://github.com/tpope/vim-fugitive.git master --squash
+
+#updating
+git subtree pull --prefix vim/bundle/vim-fugitive https://github.com/tpope/vim-fugitive.git master --squash
+```
+- symlink .vim/ with dotfiles/vim/ (this will make pathogen work correctly)
