@@ -1,12 +1,12 @@
 #Put your fun stuff here.
 export LS_OPTIONS='--color=auto'
-export CLICOLOR='Yes'
+export CLICOLOR=1
 
 #navigation
 alias b='cd ..'
 alias bb='cd ../..'
 alias bbb='cd ../../..'
-alias home='cd /home/bnagi/'
+alias home='cd ~'
 
 #listing
 alias ll='ls -l'
@@ -21,8 +21,11 @@ alias svi='sudo vim'
 alias vi=vim
 alias edit='vim'
 
-#apache aliases
-alias acheck='/usr/sbin/apachectl configtest'
+#git
+alias g="git"
+alias gs="git status"
+alias lg="git log --graph --abbrev-commit --date=relative"
+alias glg="git log --graph --abbrev-commit --date=relative"
 
 export EDITOR=/usr/bin/vim
 PS1="\[\e[1;37m\][\u@\h]\[\e[1;35m\] \w: \[\e[0;36m\]"
