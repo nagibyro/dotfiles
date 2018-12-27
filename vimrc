@@ -143,9 +143,6 @@ let g:syntastic_check_on_wq = 0
 let g:go_disable_autoinstall = 1
 let g:go_fmt_autosave = 0
 
-"erlang template plugin settings
-let g:erl_author = "Byron Nagi"
-
 "airline settings
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#syntastic#enable = 1
