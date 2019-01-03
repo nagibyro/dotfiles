@@ -36,6 +36,7 @@ brew 'tldr'
 brew 'shellcheck'
 brew 'git'
 brew 'git-secrets'
+brew 'aspell'
 
 ## DevOps
 brew 'terraform'
@@ -49,4 +50,4 @@ brew 'circleci'
 # - TablePlus
 # - VSCode
 # - Docker
-# - 
+# -
