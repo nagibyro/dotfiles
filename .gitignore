@@ -1,7 +1,23 @@
-.netrwhist
-.swp
+# Local .terraform directories
+**/.terraform/*
+
+# .tfstate files
+*.tfstate
+*.tfstate.*
+
+# Crash log files
+crash.log
+
+# Mac
 .DS_Store
 bashrc
 bash_profile
-/.idea/
 
+# Editor files
+.idea
+/.vscode/
+.swp
+.netrwhist
+
+# Python
+/__pycache__/

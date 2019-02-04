@@ -37,6 +37,7 @@ brew 'shellcheck'
 brew 'git'
 brew 'git-secrets'
 brew 'aspell'
+brew 'tree'
 
 ## DevOps
 brew 'terraform'
