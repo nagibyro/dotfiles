@@ -10,9 +10,6 @@ brew 'ncurses'
 ## Cryptography
 brew 'openssl'
 
-## Services
-brew 'nomad'
-
 ## Database
 brew 'redis', restart_service: true
 
@@ -42,8 +39,10 @@ brew 'tree'
 ## DevOps
 brew 'terraform'
 brew 'terraform-docs'
+brew 'tflint'
+brew 'tfenv'
 brew 'circleci'
-
+brew 'awscli'
 
 ## Apps to install
 # - iterm2

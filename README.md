@@ -26,3 +26,6 @@ git subtree pull --prefix vim/bundle/vim-fugitive https://github.com/tpope/vim-f
 
 ### homebrew
 - To install run `brew bundle` from dotfiles directory
+
+### Scripts
+- Copy or symlink scripts to `~/bin` and add `~/bin` to `PATH`

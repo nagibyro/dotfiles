@@ -2,6 +2,7 @@
 source ~/dotfiles/bash_configs/basic
 source ~/dotfiles/git-completion.bash
 source ~/dotfiles/git-prompt.sh
+source ~/dotfiles/scripts/tf-prompt.sh
 
-PS1="$PS1\$(__git_ps1)\[$WHITE\]\$ "
+PS1="$PS1\$(__git_ps1)\$(__terraform_ps1)\[$WHITE\]\$ "
 export PATH="$HOME/bin:$HOME/opt:$PATH"
