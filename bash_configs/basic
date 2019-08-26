@@ -26,6 +26,7 @@ alias g="git"
 alias gs="git status"
 alias lg="git log --graph --abbrev-commit --date=relative"
 alias glg="git log --graph --abbrev-commit --date=relative"
+alias gfa="git fetch --all -p"
 
 #env
 alias env="env | sort"
