@@ -14,19 +14,22 @@ brew 'openssl'
 brew 'redis', restart_service: true
 
 ## Programming languages
-brew 'node@10', args: ['with-openssl']
+brew 'node@10'
 brew 'yarn'
 brew 'go'
 brew 'gox'
 
+## Webservers
+brew 'nginx'
+
 ## Editors
-brew 'vim', args: ['with-override-system-vi', 'with-gettext', 'with-lua', 'with-luajit', 'with-tcl']
+brew 'vim'
 
 ## Terminal
-brew 'tmux', args: ['with-utf8proc']
+brew 'tmux'
 
 ## Utility
-brew 'htop', args: ['with-ncurses']
+brew 'htop'
 brew 'jq'
 brew 'yq'
 brew 'tldr'

@@ -22,7 +22,7 @@ git subtree add --prefix vim/bundle/vim-fugitive https://github.com/tpope/vim-fu
 git subtree pull --prefix vim/bundle/vim-fugitive https://github.com/tpope/vim-fugitive.git master --squash
 ```
 - Symlink `$HOME/dotfiles/vim/` to `$HOME/.vim/` (this will make pathogen work correctly)
-    - `ln -s $HOME/dotfiles/vim/ $HOME/.vim/`
+    - `ln -s $HOME/dotfiles/vim/ $HOME/.vim`
 
 ### homebrew
 - To install run `brew bundle` from dotfiles directory
