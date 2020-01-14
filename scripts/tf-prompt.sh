@@ -16,11 +16,12 @@ __terraform_ps1 ()
     __TF_PROMPT_WORKSPACE_NAME=""
 
     if [ -d "$tf_dir" ] && [ -f "$tf_dir/environment" ]; then
-      __TF_PROMPT_WORKSPACE_NAME=$(head -n 1 $tf_dir/environment)
+      __TF_PROMPT_WORKSPACE_NAME=$(head -n 1 "$tf_dir/environment")
       if [ -n "${__TF_PROMPT_WORKSPACE_NAME}" ]; then
-        echo -ne "${White}(tf env: "
+        echo -ne "${White}(tf-env: "
         echo -ne "${__TF_PROMPT_WORKSPACE_NAME}${White}${ResetColor}"
-        if [ "${__TF_PROMPT_WORKSPACE_NAME}" == "prod" ]; then
+        shopt -s nocasematch
+        if [[ "${__TF_PROMPT_WORKSPACE_NAME}" =~ ^prod.*|.*prod$ ]]; then
           echo -ne " 🚨 ) "
         else
           echo -ne ") "
