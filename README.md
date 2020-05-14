@@ -29,3 +29,6 @@ git subtree pull --prefix vim/bundle/vim-fugitive https://github.com/tpope/vim-f
 
 ### Scripts
 - Copy or symlink scripts to `~/bin` and add `~/bin` to `PATH`
+
+### psql
+1. symlink `ln -s $HOME/dotfiles/psqlrc $HOME/.psqlrc`
