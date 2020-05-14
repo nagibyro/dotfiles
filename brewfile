@@ -13,12 +13,6 @@ brew 'openssl'
 ## Database
 brew 'redis', restart_service: true
 
-## Programming languages
-brew 'node@10'
-brew 'yarn'
-brew 'go'
-brew 'gox'
-
 ## Webservers
 brew 'nginx'
 
