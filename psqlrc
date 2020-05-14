@@ -1,4 +1,4 @@
 \set ON_ERROR_ROLLBACK interactive
-\set COMPP_KEYWORD_CASE upper
+\set COMP_KEYWORD_CASE upper
 \pset null '(null)'
 
