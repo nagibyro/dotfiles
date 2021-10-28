@@ -24,6 +24,10 @@ git subtree pull --prefix vim/bundle/vim-fugitive https://github.com/tpope/vim-f
 - Symlink `$HOME/dotfiles/vim/` to `$HOME/.vim/` (this will make pathogen work correctly)
     - `ln -s $HOME/dotfiles/vim/ $HOME/.vim`
 
+### Git
+1. Copy `gitignore-sample` & `gitconfig-sample` to `gitignore` and `gitconfig`
+2. Symlink both files to home directory `ln -s $HOME/dotfiles/gitignore $HOME/.gitconfig`
+
 ### homebrew
 - To install run `brew bundle` from dotfiles directory
 
