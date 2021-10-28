@@ -21,7 +21,3 @@ bash_profile
 
 # Python
 /__pycache__/
-
-#Git
-gitignore
-gitconfig
