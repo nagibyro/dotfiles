@@ -168,10 +168,10 @@ setup_macos() {
         defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false
 
         line "Set a blazingly fast keyboard repeat rate"
-        defaults write NSGlobalDomain KeyRepeat -int 1
+        defaults write NSGlobalDomain KeyRepeat -int 3
 
         line "Set a shorter Delay until key repeat"
-        defaults write NSGlobalDomain InitialKeyRepeat -int 15
+        defaults write NSGlobalDomain InitialKeyRepeat -int 20
 
         line "Enable Safari’s debug menu"
         defaults write com.apple.Safari IncludeInternalDebugMenu -bool true
