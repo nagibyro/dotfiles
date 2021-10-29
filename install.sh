@@ -176,6 +176,9 @@ setup_macos() {
         line "Enable Safari’s debug menu"
         defaults write com.apple.Safari IncludeInternalDebugMenu -bool true
 
+        line "Set Bash as default shell"
+        chsh -s /bin/bash
+
         line "Kill affected applications"
 
         for app in Safari Finder Dock Mail SystemUIServer; do killall "$app" >/dev/null 2>&1; done
