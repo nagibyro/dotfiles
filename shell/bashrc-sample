@@ -1,8 +1,8 @@
 #!/bin/bash
-source ~/dotfiles/bash_configs/basic
-source ~/dotfiles/scripts/git-completion.bash
-source ~/dotfiles/scripts/git-prompt.sh
-source ~/dotfiles/scripts/tf-prompt.sh
+source ~/dotfiles/shell/bash_configs/basic
+source ~/dotfiles/git/git-completion.bash
+source ~/dotfiles/git/git-prompt.sh
+source ~/dotfiles/shell/tf-prompt.sh
 
 function webstorm {
   open -na "Webstorm.app" --args "$@"

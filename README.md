@@ -5,7 +5,7 @@ holds the dotfiles and other configs for unix like operating systems.
 
 ### Bash
 1. Copy `bashrc-sample` & `bash_profile-sample` to `bashrc` and `bash_profile`
-2. Symlink both files to home directory `ln -s $HOME/dotfiles/bashrc $HOME/.bashrc`
+2. Symlink both files to home directory `ln -s $HOME/dotfiles/shell/bashrc $HOME/.bashrc`
 
 The sample bashrc includes the git-completion.bash script and a few others
 
@@ -25,8 +25,10 @@ git subtree pull --prefix vim/bundle/vim-fugitive https://github.com/tpope/vim-f
     - `ln -s $HOME/dotfiles/vim/ $HOME/.vim`
 
 ### Git
-1. Copy `gitignore-sample` & `gitconfig-sample` to `gitignore` and `gitconfig`
-2. Symlink both files to home directory `ln -s $HOME/dotfiles/gitignore $HOME/.gitconfig`
+1. Run `./install.sh git`
+
+### Macos
+1. Run `./install.sh macos`
 
 ### homebrew
 - To install run `brew bundle` from dotfiles directory

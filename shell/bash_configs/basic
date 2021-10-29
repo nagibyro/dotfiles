@@ -32,4 +32,4 @@ alias gfa="git fetch --all -p"
 alias env="env | sort"
 
 export EDITOR=/usr/bin/vim
-PS1="\[\e[1;37m\][\u@\h]\[\e[1;35m\] \w: \[\e[0;36m\]"
+#PS1="\[\e[1;37m\][\u@\h]\[\e[1;35m\] \w: \[\e[0;36m\]"
