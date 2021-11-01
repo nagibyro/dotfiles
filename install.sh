@@ -177,7 +177,17 @@ setup_macos() {
         defaults write com.apple.Safari IncludeInternalDebugMenu -bool true
 
         line "Set Bash as default shell"
-        chsh -s /bin/bash
+        # if shell line doesnt end in bash then change shell
+        # $SHELL=/bin/bash if shell is set correctly
+        if [[ ! $SHELL =~ bash$ ]]; then
+          chsh -s /bin/bash
+        fi
+
+        line "Set clock format"
+        defaults write com.apple.menuextra.clock "DateFormat" -string "\"EEE d MMM HH:mm:ss\""
+
+        line "Set smaller dock pixel size"
+        defaults write com.apple.dock "tilesize" -int 36
 
         line "Kill affected applications"
 
