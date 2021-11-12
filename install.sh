@@ -184,7 +184,7 @@ setup_macos() {
         fi
 
         line "Set clock format"
-        defaults write com.apple.menuextra.clock "DateFormat" -string "\"EEE d MMM HH:mm:ss\""
+        defaults write com.apple.menuextra.clock "DateFormat" -string "\"EEE d MMM h:mm:ss\""
 
         line "Set smaller dock pixel size"
         defaults write com.apple.dock "tilesize" -int 36
