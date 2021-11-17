@@ -215,7 +215,7 @@ function run_script() {
       setup_git
       ;;
     *)
-      echo -e $"\n Usage: $(basename "$0") {git|macos|tmux}\n"
+      echo -e $"\n Usage: $(basename "$0") {macos|tmux|psql|git}\n"
       exit 1
       ;;
   esac
