@@ -10,7 +10,12 @@ packer.startup(function()
   }
 
   use 'neovim/nvim-lspconfig'
+  
+  use 'scrooloose/nerdtree'
+  use 'preservim/nerdcommenter'
+
 end)
 
 require'lspconfig'.yamlls.setup{}
 require'lspconfig'.rust_analyzer.setup{}
+

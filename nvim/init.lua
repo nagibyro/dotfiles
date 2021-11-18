@@ -1,3 +1,8 @@
+local vim = vim
+local api = vim.api
+
+vim.g.mapleader = " "                       -- leader key
+
 vim.o.showmatch = true                      -- show matching brackets
 vim.o.mouse = 'v'                           -- use mouse in visual mode
 vim.o.hlsearch = true                       -- highlight search results
@@ -35,5 +40,13 @@ vim.o.incsearch = true
 vim.wo.signcolumn = 'yes'
 vim.o.scrolloff = 3           -- start scrolling before cursor reaches an edge
 vim.o.sidescrolloff = 1       -- start scrolling before cursor reaches an edge
+
+
+
+----- NerdTree Config -----
+api.nvim_set_keymap("n", "<leader>n", ":NERDTreeToggle<CR>", {noremap = true})
+api.nvim_set_keymap("n", "<leader>f", ":NERDTreeFind<CR>", {noremap = true})
+
+---api.nvim_exec([[ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif ]], false)
 
 require('plugins')
