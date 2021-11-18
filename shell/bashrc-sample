@@ -4,6 +4,11 @@ source ~/dotfiles/git/git-completion.bash
 source ~/dotfiles/git/git-prompt.sh
 source ~/dotfiles/shell/tf-prompt.sh
 
+# silence zsh bagger message on mac
+if [[ "$(uname)" == "Darwin" ]]; then
+  export BASH_SILENCE_DEPRECATION_WARNING=1
+fi
+
 function webstorm {
   open -na "Webstorm.app" --args "$@"
 }

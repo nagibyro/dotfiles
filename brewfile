@@ -32,6 +32,7 @@ brew 'git'
 brew 'git-secrets'
 brew 'aspell'
 brew 'tree'
+brew 'fzf'
 
 ## DevOps
 brew 'terraform'

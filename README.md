@@ -37,4 +37,12 @@ git subtree pull --prefix vim/bundle/vim-fugitive https://github.com/tpope/vim-f
 - Copy or symlink scripts to `~/bin` and add `~/bin` to `PATH`
 
 ### psql
-1. symlink `ln -s $HOME/dotfiles/psqlrc $HOME/.psqlrc`
+1. `./insall.sh psql`
+
+### macos
+Set preferred macos settings
+
+**Note**: may need to restart or relaunch apps like finder to see results.
+
+1. `./install.sh macos`
+

@@ -15,14 +15,86 @@ function hdr() {
     head -c 100 < /dev/zero | tr '\0' "${delimiter}" ; echo
 }
 
+
+# prints out message with * before it
+# number of astrisks defaults to 1 second arg to set more
+# example:
+#   line "foobar" 3
+#   prints: '*** foobar'
+function line() {
+    local msg=$1
+    local indent=${2:-1}
+
+    local prefix=''
+    for i in $(seq 1 "$indent"); do
+        prefix="${prefix}*"
+    done
+
+    printf "%s %s\n" "$prefix" "$msg"
+}
+
+function symlink() {
+    local src=$1
+    local dest=$2
+
+    if [[ -z $src ]]; then
+        echo "missing symlink scr..."
+        return 1
+    fi
+
+    if [[ -z $dest ]]; then
+        echo "missing symlink dest..."
+        return 1
+    fi
+
+    line "symlinking: $src to $dest"
+
+    ln -s $src $dest
+}
+
+setup_psql() {
+  hdr "Setup psql"
+
+  if [ -e "$HOME/.psqlrc" ]; then
+    read -rn 1 -p "* ~/.psqlrc found overwrite? [y/N] " overwrite
+    echo -e "\n"
+    if [[ $overwrite =~ ^([Nn])$ ]]; then
+      line "aborting..."
+      return 1
+    fi
+    rm "$HOME/.psqlrc"
+  fi
+
+
+  symlink "$HOME/dotfiles/psqlrc" "$HOME/.psqlrc"
+
+}
+
+setup_tmux() {
+  hdr "Setup tmux"
+
+  if [ -e "$HOME/.tmux.conf" ]; then
+    read -rn 1 -p "* ~/.tmux.conf found overwrite? [y/N] " overwrite
+    echo -e "\n"
+    if [[ $overwrite =~ ^([Nn])$ ]]; then
+      line "aborting..."
+      return 1
+    fi
+    rm "$HOME/.tmux.conf"
+  fi
+
+
+  symlink "$HOME/dotfiles/tmux/tmux.conf" "$HOME/.tmux.conf"
+}
+
 setup_git() {
   hdr "Setup git files"
 
   if [ -e $HOME/.gitconfig ]; then
-    read -rn 1 -p "~/.gitconfig found overwrite? [y/N] " overwrite
+    read -rn 1 -p "* ~/.gitconfig found overwrite? [y/N] " overwrite
     echo -e "\n"
     if [[ $overwrite =~ ^([Nn])$ ]]; then
-      echo -e "\n aborting..."
+      line "aborting..."
       return 1
     fi
     rm $HOME/.gitconfig
@@ -31,14 +103,14 @@ setup_git() {
   defaultName=$(git config -f $HOME/dotfiles/git/gitconfig-sample user.name)
   defaultEmail=$(git config -f $HOME/dotfiles/git/gitconfig-sample user.email)
 
-  read -rp "Name [$defaultName]: " name
-  read -rp "Email [$defaultEmail]: " email
+  read -rp "* Name [$defaultName]: " name
+  read -rp "* Email [$defaultEmail]: " email
 
   if [ ! -e $HOME/dotfiles/git/gitconfig ]; then
     cp $HOME/dotfiles/git/gitconfig-sample $HOME/dotfiles/git/gitconfig
   fi
 
-  ln -s $HOME/dotfiles/git/gitconfig $HOME/.gitconfig
+  symlink $HOME/dotfiles/git/gitconfig $HOME/.gitconfig
 
   if [[ "$(uname)" == "Darwin" ]]; then
     git config --global credential.helper "osxkeychain"
@@ -55,56 +127,69 @@ setup_git() {
     cp $HOME/dotfiles/git/gitignore-sample $HOME/dotfiles/git/gitignore
   fi
 
-  ln -s $HOME/dotfiles/git/gitignore $HOME/.gitignore
+  symlink $HOME/dotfiles/git/gitignore $HOME/.gitignore
 }
 
 setup_macos() {
     hdr "Configuring macOS"
     if [[ "$(uname)" == "Darwin" ]]; then
 
-        echo "Finder: show all filename extensions"
+        line "Finder: show all filename extensions"
         defaults write NSGlobalDomain AppleShowAllExtensions -bool true
 
-        echo "show hidden files by default"
-        defaults write com.apple.Finder AppleShowAllFiles -bool false
+        line "show hidden files by default"
+        defaults write com.apple.Finder AppleShowAllFiles -bool true
 
-        echo "only use UTF-8 in Terminal.app"
+        line "only use UTF-8 in Terminal.app"
         defaults write com.apple.terminal StringEncodings -array 4
 
-        echo "expand save dialog by default"
+        line "expand save dialog by default"
         defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode -bool true
 
-        echo "show the ~/Library folder in Finder"
+        line "show the ~/Library folder in Finder"
         chflags nohidden ~/Library
 
-        echo "Enable full keyboard access for all controls (e.g. enable Tab in modal dialogs)"
+        line "Enable full keyboard access for all controls (e.g. enable Tab in modal dialogs)"
         defaults write NSGlobalDomain AppleKeyboardUIMode -int 3
 
-        echo "Enable subpixel font rendering on non-Apple LCDs"
+        line "Enable subpixel font rendering on non-Apple LCDs"
         defaults write NSGlobalDomain AppleFontSmoothing -int 2
 
-        echo "Use current directory as default search scope in Finder"
+        line "Use current directory as default search scope in Finder"
         defaults write com.apple.finder FXDefaultSearchScope -string "SCcf"
 
-        echo "Show Path bar in Finder"
+        line "Show Path bar in Finder"
         defaults write com.apple.finder ShowPathbar -bool true
 
-        echo "Show Status bar in Finder"
+        line "Show Status bar in Finder"
         defaults write com.apple.finder ShowStatusBar -bool true
 
-        echo "Disable press-and-hold for keys in favor of key repeat"
+        line "Disable press-and-hold for keys in favor of key repeat"
         defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false
 
-        echo "Set a blazingly fast keyboard repeat rate"
-        defaults write NSGlobalDomain KeyRepeat -int 1
+        line "Set a blazingly fast keyboard repeat rate"
+        defaults write NSGlobalDomain KeyRepeat -int 3
 
-        echo "Set a shorter Delay until key repeat"
-        defaults write NSGlobalDomain InitialKeyRepeat -int 15
+        line "Set a shorter Delay until key repeat"
+        defaults write NSGlobalDomain InitialKeyRepeat -int 20
 
-        echo "Enable Safari’s debug menu"
+        line "Enable Safari’s debug menu"
         defaults write com.apple.Safari IncludeInternalDebugMenu -bool true
 
-        echo "Kill affected applications"
+        line "Set Bash as default shell"
+        # if shell line doesnt end in bash then change shell
+        # $SHELL=/bin/bash if shell is set correctly
+        if [[ ! $SHELL =~ bash$ ]]; then
+          chsh -s /bin/bash
+        fi
+
+        line "Set clock format"
+        defaults write com.apple.menuextra.clock "DateFormat" -string "\"EEE d MMM h:mm:ss\""
+
+        line "Set smaller dock pixel size"
+        defaults write com.apple.dock "tilesize" -int 36
+
+        line "Kill affected applications"
 
         for app in Safari Finder Dock Mail SystemUIServer; do killall "$app" >/dev/null 2>&1; done
     else
@@ -114,17 +199,23 @@ setup_macos() {
 
 #main script here...
 function run_script() {
-	cur_dir="$( cd "$( dirname "$0" )" && pwd )"
+  cur_dir="$( cd "$( dirname "$0" )" && pwd )"
 
   case "$1" in
     macos)
       setup_macos
       ;;
+    tmux)
+      setup_tmux
+      ;;
+    psql)
+      setup_psql
+      ;;
     git)
       setup_git
       ;;
     *)
-      echo -e $"\n Usage: $(basename "$0") {git|macos}\n"
+      echo -e $"\n Usage: $(basename "$0") {git|macos|tmux}\n"
       exit 1
       ;;
   esac
