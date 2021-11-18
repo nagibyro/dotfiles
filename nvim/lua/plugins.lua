@@ -18,4 +18,6 @@ end)
 
 require'lspconfig'.yamlls.setup{}
 require'lspconfig'.rust_analyzer.setup{}
+require'lspconfig'.tsserver.setup{}
+require'lspconfig'.bashls.setup{}
 
