@@ -25,10 +25,10 @@ git subtree pull --prefix vim/bundle/vim-fugitive https://github.com/tpope/vim-f
     - `ln -s $HOME/dotfiles/vim/ $HOME/.vim`
 
 ### Git
-1. Run `./install.sh git`
+- Run `./install.sh git`
 
 ### Macos
-1. Run `./install.sh macos`
+- Run `./install.sh macos`
 
 ### homebrew
 - To install run `brew bundle` from dotfiles directory
@@ -37,12 +37,20 @@ git subtree pull --prefix vim/bundle/vim-fugitive https://github.com/tpope/vim-f
 - Copy or symlink scripts to `~/bin` and add `~/bin` to `PATH`
 
 ### psql
-1. `./insall.sh psql`
+- `./insall.sh psql`
 
 ### macos
 Set preferred macos settings
 
 **Note**: may need to restart or relaunch apps like finder to see results.
 
-1. `./install.sh macos`
+- `./install.sh macos`
+
+### sway
+Set config for [sway window manager](https://wiki.archlinux.org/title/Sway)
+
+**Note**: its pretty specific for arch linux laptop assumes using [TLP](https://wiki.archlinux.org/title/Sway) for power management
+
+- `./install.sh sway`
+
 
