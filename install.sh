@@ -197,6 +197,32 @@ setup_macos() {
     fi
 }
 
+function setup_sway() {
+  hdr "Setup Sway"
+
+  if [[ ! "$(uname)" == "Linux" ]]; then
+    exit 1;
+  fi
+
+  if [ -e $HOME/.config/sway/config ]; then
+    read -rn 1 -p "* ~/.config/sway/config found overwrite? [y/N] " overwrite
+    echo -e "\n"
+    if [[ $overwrite =~ ^([Nn])$ ]]; then
+      line "aborting..."
+      return 1
+    fi
+    rm $HOME/.config/sway/config
+  fi
+
+  symlink "$HOME/dotfiles/linux/arch/wayland/sway-config" "$HOME/.config/sway/config"
+
+  if [ -e $HOME/.config/sway/swaybar-status-cmd.sh ]; then
+    rm $HOME/.config/sway/swaybar-status-cmd.sh
+  fi
+
+  symlink "$HOME/dotfiles/linux/arch/wayland/swaybar-status-cmd.sh" "$HOME/.config/sway/swaybar-status-cmd.sh"
+}
+
 #main script here...
 function run_script() {
   cur_dir="$( cd "$( dirname "$0" )" && pwd )"
@@ -214,8 +240,11 @@ function run_script() {
     git)
       setup_git
       ;;
+    sway)
+      setup_sway
+      ;;
     *)
-      echo -e $"\n Usage: $(basename "$0") {git|macos|tmux}\n"
+      echo -e $"\n Usage: $(basename "$0") {macos|tmux|psql|git|sway}\n"
       exit 1
       ;;
   esac
