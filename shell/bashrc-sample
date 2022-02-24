@@ -13,5 +13,5 @@ function webstorm {
   open -na "Webstorm.app" --args "$@"
 }
 
-PS1="$PS1\$(__git_ps1)\$(__terraform_ps1)\[$WHITE\]\$ "
+PS1="$PS1\'$(__git_ps1)'\'$(__terraform_ps1)'\[$WHITE\]\$ "
 export PATH="$HOME/bin:$HOME/opt:$PATH"

@@ -46,6 +46,7 @@ packer.startup(function()
   use 'tpope/vim-commentary'
   use 'rafi/awesome-vim-colorschemes'
   use 'kyazdani42/nvim-web-devicons'
+  use 'L3MON4D3/luaSnip'
 --  use {
 --    'nvim-lualine/lualine.nvim', 
 --    config = get_setup("lualine"),
@@ -53,10 +54,23 @@ packer.startup(function()
 --    requires: { 'kyazdani42/nvim-web-devicons', opt = true }
 --  }
 
+-- Completion
+use "hrsh7th/nvim-cmp"
+use "hrsh7th/cmp-buffer"
+use "hrsh7th/cmp-path"
+use "hrsh7th/cmp-nvim-lua"
+use "hrsh7th/cmp-nvim-lsp"
+use "saadparwaiz1/cmp_luasnip"
+
 end)
 
 require'lspconfig'.yamlls.setup{}
 require'lspconfig'.rust_analyzer.setup{}
 require'lspconfig'.tsserver.setup{}
 require'lspconfig'.bashls.setup{}
+require'lspconfig'.eslint.setup{}
+require'lspconfig'.cssls.setup{}
+require'lspconfig'.dockerls.setup{}
+require'lspconfig'.html.setup{}
+require'lspconfig'.jsonls.setup{}
 
