@@ -62,6 +62,9 @@ use "hrsh7th/cmp-nvim-lua"
 use "hrsh7th/cmp-nvim-lsp"
 use "saadparwaiz1/cmp_luasnip"
 
+-- Theme
+use "EdenEast/nightfox.nvim"
+
 end)
 
 require'lspconfig'.yamlls.setup{}

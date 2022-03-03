@@ -99,10 +99,20 @@ _G.packer_plugins = {
     path = "/local/home/nagibyro/.local/share/nvim/site/pack/packer/start/cmp_luasnip",
     url = "https://github.com/saadparwaiz1/cmp_luasnip"
   },
+  luaSnip = {
+    loaded = true,
+    path = "/local/home/nagibyro/.local/share/nvim/site/pack/packer/start/luaSnip",
+    url = "https://github.com/L3MON4D3/luaSnip"
+  },
   nerdtree = {
     loaded = true,
     path = "/local/home/nagibyro/.local/share/nvim/site/pack/packer/start/nerdtree",
     url = "https://github.com/scrooloose/nerdtree"
+  },
+  ["nightfox.nvim"] = {
+    loaded = true,
+    path = "/local/home/nagibyro/.local/share/nvim/site/pack/packer/start/nightfox.nvim",
+    url = "https://github.com/EdenEast/nightfox.nvim"
   },
   ["nvim-cmp"] = {
     loaded = true,
