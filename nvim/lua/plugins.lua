@@ -16,19 +16,11 @@ end
 
 vim.cmd [[packadd packer.nvim]]
 
-
 function get_setup(name)
   return string.format('require("setup/%s")', name)
 end
 
-
-packer = require 'packer'
-
-packer.init {}
-
-local use = packer.use
-packer.reset()
-packer.startup(function()
+require("packer").startup(function(use)
   use {
     'wbthomason/packer.nvim'
   }
@@ -47,6 +39,7 @@ packer.startup(function()
   use 'rafi/awesome-vim-colorschemes'
   use 'kyazdani42/nvim-web-devicons'
   use 'L3MON4D3/luaSnip'
+  use 'windwp/nvim-autopairs'
 --  use {
 --    'nvim-lualine/lualine.nvim', 
 --    config = get_setup("lualine"),
@@ -76,4 +69,3 @@ require'lspconfig'.cssls.setup{}
 require'lspconfig'.dockerls.setup{}
 require'lspconfig'.html.setup{}
 require'lspconfig'.jsonls.setup{}
-

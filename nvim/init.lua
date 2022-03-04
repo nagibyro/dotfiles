@@ -11,7 +11,6 @@ vim.cmd("source " .. vim.fn.stdpath('config') .. "/nerdtree.vim")
 require('plugins')
 require('options')
 
-
 ----- Completion Config -----
 local cmp = require("cmp")
 
@@ -77,4 +76,6 @@ nightfox.setup({
 })
 
 nightfox.load()
+
+require('nvim-autopairs').setup{}
 
