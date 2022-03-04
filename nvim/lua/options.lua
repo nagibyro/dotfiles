@@ -2,8 +2,6 @@ local vim = vim
 local opt = vim.opt
 local api = vim.api
 
-vim.g.mapleader = " "                       -- leader key
-
 vim.o.showmatch = true                      -- show matching brackets
 vim.o.mouse = 'v'                           -- use mouse in visual mode
 vim.o.hlsearch = true                       -- highlight search results
@@ -61,3 +59,13 @@ opt.showmode = false
 opt.signcolumn = "number"
 opt.splitbelow = true
 opt.splitright = true
+
+
+vim.g.nvim_tree_show_icons = {
+  git = 0,
+  folders = 1,
+  files = 1,
+  folder_arrows = 1,
+}
+
+

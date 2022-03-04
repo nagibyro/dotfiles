@@ -25,7 +25,10 @@ require("packer").startup(function(use)
     'wbthomason/packer.nvim'
   }
 
-  use 'neovim/nvim-lspconfig'
+  use {
+    'neovim/nvim-lspconfig',
+    config = get_setup("lsp"),
+  }
   use {
     'nvim-treesitter/nvim-treesitter',
     config = get_setup("treesitter"),
@@ -34,12 +37,20 @@ require("packer").startup(function(use)
   
 
   use 'tpope/vim-surround'
-  use 'scrooloose/nerdtree'
+  use {
+    'kyazdani42/nvim-tree.lua',
+    requires = {
+      { "kyazdani42/nvim-web-devicons" }
+    },
+    config = get_setup("tree"),
+  }
+
   use 'tpope/vim-commentary'
-  use 'rafi/awesome-vim-colorschemes'
-  use 'kyazdani42/nvim-web-devicons'
   use 'L3MON4D3/luaSnip'
-  use 'windwp/nvim-autopairs'
+  use {
+    'windwp/nvim-autopairs',
+    config = get_setup("autopairs"),
+  }
 --  use {
 --    'nvim-lualine/lualine.nvim', 
 --    config = get_setup("lualine"),
@@ -48,24 +59,35 @@ require("packer").startup(function(use)
 --  }
 
 -- Completion
-use "hrsh7th/nvim-cmp"
-use "hrsh7th/cmp-buffer"
-use "hrsh7th/cmp-path"
-use "hrsh7th/cmp-nvim-lua"
-use "hrsh7th/cmp-nvim-lsp"
-use "saadparwaiz1/cmp_luasnip"
+use {
+  "hrsh7th/nvim-cmp",
+  requires = {
+    { "hrsh7th/cmp-buffer" },
+    { "hrsh7th/cmp-path" },
+    { "hrsh7th/cmp-nvim-lua" },
+    { "hrsh7th/cmp-nvim-lsp" },
+    { "saadparwaiz1/cmp_luasnip" },
+  },
+  config = {
+    get_setup("cmp")
+  }
+}
 
 -- Theme
-use "EdenEast/nightfox.nvim"
+use {
+  "EdenEast/nightfox.nvim",
+  config = get_setup("theme"),
+}
+
+-- Telescope
+use {
+  "nvim-telescope/telescope.nvim",
+  requires = { 
+    { "nvim-lua/plenary.nvim" },
+    { "BurntSushi/ripgrep" },
+    { "nvim-telescope/telescope-fzf-native.nvim", run = "make" }
+  },
+}
 
 end)
 
-require'lspconfig'.yamlls.setup{}
-require'lspconfig'.rust_analyzer.setup{}
-require'lspconfig'.tsserver.setup{}
-require'lspconfig'.bashls.setup{}
-require'lspconfig'.eslint.setup{}
-require'lspconfig'.cssls.setup{}
-require'lspconfig'.dockerls.setup{}
-require'lspconfig'.html.setup{}
-require'lspconfig'.jsonls.setup{}
