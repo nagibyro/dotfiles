@@ -31,5 +31,7 @@ alias gfa="git fetch --all -p"
 #env
 alias env="env | sort"
 
+alias uuidgen='uuidgen | tr "[:upper:]" "[:lower:]"'
+
 export EDITOR=/usr/bin/vim
 #PS1="\[\e[1;37m\][\u@\h]\[\e[1;35m\] \w: \[\e[0;36m\]"
