@@ -72,22 +72,34 @@ use {
     get_setup("cmp")
   }
 }
-
+ 
 -- Theme
 use {
   "EdenEast/nightfox.nvim",
   config = get_setup("theme"),
 }
 
+--project management
+use {
+  "ahmedkhalf/project.nvim",
+  config = {
+    get_setup("project")
+  }
+}
+
 -- Telescope
 use {
   "nvim-telescope/telescope.nvim",
+  config = {
+    get_setup("telescope")
+  },
   requires = { 
     { "nvim-lua/plenary.nvim" },
     { "BurntSushi/ripgrep" },
     { "nvim-telescope/telescope-fzf-native.nvim", run = "make" }
   },
 }
+
 
 end)
 

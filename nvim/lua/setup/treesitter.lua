@@ -25,4 +25,37 @@ require("nvim-treesitter.configs").setup({
 })
 -- Setup treesitter
 local ts = require("nvim-treesitter.configs")
-ts.setup({ ensure_installed = "maintained", highlight = { enable = true } })
+ts.setup({ ensure_installed = {
+  "bash", 
+  "lua",
+  "rust", 
+  "c",
+  "comment",
+  "dockerfile",
+  "elixir",
+  "erlang",
+  "go",
+  "gomod",
+  "gowork",
+  "graphql",
+  "hcl",
+  "html",
+  "http",
+  "java",
+  "javascript",
+  "jsdoc",
+  "json",
+  "json5",
+  "make",
+  "perl",
+  "php",
+  "python",
+  "regex",
+  "svelte",
+  "toml",
+  "tsx",
+  "typescript",
+  "vim",
+  "vue",
+  "yaml",
+}, highlight = { enable = true } })
