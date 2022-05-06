@@ -29,6 +29,9 @@ map("n", "<leader>fs", '<cmd>lua require("telescope.builtin").live_grep()<cr>')
 map("n", "<leader>fr", '<cmd>lua require("telescope.builtin").oldfiles()<cr>')
 map("n", "<leader>fp", '<cmd>Telescope projects<cr>')
 
+map("n", "<leader>b", '<c-^>')
+
+
 --map("n", "<leader>s", '<cmd>lua require("telescope.builtin").spell_suggest()<cr>')
 
 -- * Code navigation
