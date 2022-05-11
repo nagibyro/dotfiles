@@ -9,6 +9,14 @@ require('nvim-tree').setup {
     enable = true,
     ignore = false,
   },
+  actions = {
+    open_file = {
+      resize_window = true,
+      window_picker = {
+        enable = false
+      }
+    }
+  }
 }
 
 -- interferes with telescope when trying to find a file with no files open
