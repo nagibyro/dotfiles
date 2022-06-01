@@ -72,6 +72,12 @@ use {
     get_setup("cmp")
   }
 }
+-- use {
+--   "ray-x/lsp_signature.nvim",
+--   config = {
+--     get_setup("lsp_signature")
+--   }
+-- }
  
 -- Theme
 use {
@@ -100,6 +106,12 @@ use {
   },
 }
 
+
+use {
+  "folke/trouble.nvim",
+  requires = "kyazdani42/nvim-web-devicons",
+  config = get_setup("trouble")
+}
 
 end)
 

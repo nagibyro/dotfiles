@@ -27,7 +27,7 @@ vim.g.nvim_tree_git_hl = 0
 map("n", "<leader>ff", '<cmd>lua require("telescope.builtin").find_files()<cr>')
 map("n", "<leader>fs", '<cmd>lua require("telescope.builtin").live_grep()<cr>')
 map("n", "<leader>fo", '<cmd>lua require("telescope.builtin").oldfiles()<cr>')
-map("n", "<leader>fo", '<cmd>Telescope projects<cr>')
+map("n", "<leader>fp", '<cmd>Telescope projects<cr>')
 
 map("n", "<leader>b", '<c-^>') -- toggle between the alternative file buffer and current
 
@@ -40,4 +40,12 @@ map("n", "<leader>cr", '<cmd>lua require("telescope.builtin").lsp_references()<c
 map("n", "<leader>cd", '<cmd>lua require("telescope.builtin").lsp_definitions()<cr>')
 map("n", "<leader>cs", '<cmd>lua require("telescope.builtin").lsp_document_symbols()<cr>')
 map("n", "<leader>cn", '<cmd>lua vim.lsp.buf.rename()<cr>')
+map("n", "<leader>sh", '<cmd>lua vim.lsp.buf.signature_help()<cr>')
 
+--Code trouble & hints
+map("n", "<leader>xx", '<cmd>Trouble<cr>')
+map("n", "<leader>xw", '<cmd>Trouble workspace_diagnostics<cr>')
+map("n", "<leader>xd", '<cmd>Trouble document_diagnostics<cr>')
+map("n", "<leader>xq", '<cmd>Trouble quickfix<cr>')
+map("n", "<leader>xl", '<cmd>Trouble loclist<cr>')
+map("n", "gR",'<cmd>Trouble lsp_references<cr>')
