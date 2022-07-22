@@ -45,7 +45,7 @@ vim.o.sidescrolloff = 1       -- start scrolling before cursor reaches an edge
 vim.opt.undofile = true; vim.bo.undofile = true --persistent undo
 
 opt.clipboard = "unnamedplus" -- use system clipboard see :h clipboard
-opt.completeopt = "menu,menuone,noselect" -- configure auto complete options
+opt.completeopt = { 'menu', 'menuone', 'noselect' } -- configure auto complete options
 opt.cursorline = true
 opt.cursorcolumn = true
 opt.encoding = "utf-8"
