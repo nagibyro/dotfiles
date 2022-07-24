@@ -14,13 +14,6 @@ vim.api.nvim_set_keymap("i", "jk", "<esc>", {})
 -- Nvim Tree
 map("n", "<C-n>", ":NvimTreeFindFile<CR>", { silent = true })
 map("n", "<leader>1", '<cmd>lua require("nvim-tree").toggle(false, true)<cr>')
-vim.g.nvim_tree_show_icons = {
-  git = 0,
-  folders = 1,
-  files = 1,
-  folder_arrows = 1,
-}
-vim.g.nvim_tree_git_hl = 0
 
 -- Telescope
 -- * File Navigation

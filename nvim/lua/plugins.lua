@@ -34,13 +34,18 @@ require("packer").startup(function(use)
     config = get_setup("treesitter"),
     run = ":TSUpdate",
   }
+
+  use {
+    "kyazdani42/nvim-web-devicons",
+    config = get_setup("dev-icons"),
+  }
   
 
   use 'tpope/vim-surround'
   use {
     'kyazdani42/nvim-tree.lua',
     requires = {
-      --{ "kyazdani42/nvim-web-devicons" }
+      { "kyazdani42/nvim-web-devicons" }
     },
     config = get_setup("tree"),
   }

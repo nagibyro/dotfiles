@@ -21,6 +21,8 @@ alias svi='sudo vim'
 alias vi=vim
 alias edit='vim'
 
+alias vim="nvim"
+
 #git
 alias g="git"
 alias gs="git status"

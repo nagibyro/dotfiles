@@ -16,7 +16,26 @@ require('nvim-tree').setup {
         enable = false
       }
     }
-  }
+  },
+  renderer = {
+    icons = {
+      webdev_colors = true,
+      show = {
+        file = true,
+        folder = true,
+        folder_arrow = true,
+        git = true,
+      }
+    },
+    special_files = {
+      "Cargo.toml",
+      "Makefile",
+      "README.md",
+      "readme.md", 
+      "package.json",
+      "package.lock",
+    },
+  },
 }
 
 -- interferes with telescope when trying to find a file with no files open
