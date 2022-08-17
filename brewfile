@@ -6,6 +6,7 @@ tap 'homebrew/services'
 
 ## System
 brew 'ncurses'
+brew 'bash'
 
 ## Cryptography
 brew 'openssl'
@@ -33,6 +34,8 @@ brew 'git-secrets'
 brew 'aspell'
 brew 'tree'
 brew 'fzf'
+brew 'fd'
+brew 'ripgrep'
 
 ## DevOps
 brew 'terraform'

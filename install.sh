@@ -223,6 +223,14 @@ function setup_sway() {
   symlink "$HOME/dotfiles/linux/arch/wayland/swaybar-status-cmd.sh" "$HOME/.config/sway/swaybar-status-cmd.sh"
 }
 
+function setup_bash() {
+  hdr "Setup Bash"
+
+  #TODO actually automate this
+  echo "Follow https://gist.github.com/samnang/1759336 to get updated bash on mac"
+}
+
+
 #main script here...
 function run_script() {
   cur_dir="$( cd "$( dirname "$0" )" && pwd )"

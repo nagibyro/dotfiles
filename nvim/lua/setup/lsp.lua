@@ -27,6 +27,8 @@ vim.api.nvim_create_autocmd('User', {
   end
 })
 
+local lsp_util = require('lspconfig/util')
+
 local lsp_defaults = {
   flags = {
     debounce_text_changes = 150,
@@ -47,7 +49,48 @@ lspconfig.util.default_config = vim.tbl_deep_extend(
   lsp_defaults
 )
 
-lspconfig.sumneko_lua.setup({})
+local function get_python_path(workspace)
+  -- Use activated virtualenv.
+  if vim.env.VIRTUAL_ENV then
+    return lsp_util.path.join(vim.env.VIRTUAL_ENV, 'bin', 'python')
+  end
+
+  -- Find and use virtualenv from poetry in workspace directory.
+  local matchPoetry = vim.fn.glob(lsp_util.path.join(workspace, 'poetry.lock'))
+  if matchPoetry ~= '' then
+    local venv = vim.fn.trim(vim.fn.system('poetry env info -p'))
+    return lsp_util.path.join(venv, 'bin', 'python');
+  end
+
+
+  -- Find and use virtualenv from pipenv in workspace directory.
+  local matchPip = vim.fn.glob(lsp_util.path.join(workspace, 'Pipfile'))
+  if matchPip ~= '' then
+    local venv = vim.fn.trim(vim.fn.system('PIPENV_PIPFILE=' .. matchPip .. ' pipenv --venv'))
+    return lsp_util.path.join(venv, 'bin', 'python')
+  end
+
+  -- Fallback to system Python.
+  return vim.fn.exepath('python3') or vim.fn.exepath('python') or 'python'
+end
+
+lspconfig.sumneko_lua.setup({
+  settings = {
+    Lua = {
+      runtime = {
+        version = "LuaJIT",
+      },
+      diagnostics = {
+        globals = { "vim" },
+      },
+      workspace = {
+        library = vim.api.nvim_get_runtime_file("", true),
+        maxPreload = 10000,
+        preloadFileSize = 1000,
+      }
+    }
+  }
+})
 lspconfig.yamlls.setup({})
 lspconfig.rust_analyzer.setup({})
 lspconfig.tsserver.setup({})
@@ -57,4 +100,9 @@ lspconfig.cssls.setup({})
 lspconfig.dockerls.setup({})
 lspconfig.html.setup({})
 lspconfig.jsonls.setup({})
+lspconfig.pyright.setup({
+  on_init = function(client)
+    client.config.settings.python.pythonPath = get_python_path(client.config.root_dir)
+  end
+})
 
