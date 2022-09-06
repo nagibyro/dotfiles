@@ -31,11 +31,16 @@ require('nvim-tree').setup {
       "Cargo.toml",
       "Makefile",
       "README.md",
-      "readme.md", 
+      "readme.md",
       "package.json",
       "package.lock",
+      "poetry.lock",
+      "pyproject.toml",
     },
   },
+  view = {
+    adaptive_size = true,
+  }
 }
 
 -- interferes with telescope when trying to find a file with no files open

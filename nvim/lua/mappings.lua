@@ -29,9 +29,9 @@ map("n", "<leader>b", '<c-^>') -- toggle between the alternative file buffer and
 map("n", "<leader>ss", '<cmd>lua require("telescope.builtin").spell_suggest()<cr>')
 
 -- * Code navigation
--- map("n", "<leader>cr", '<cmd>lua require("telescope.builtin").lsp_references()<cr>')
--- map("n", "<leader>cd", '<cmd>lua require("telescope.builtin").lsp_definitions()<cr>')
--- map("n", "<leader>cs", '<cmd>lua require("telescope.builtin").lsp_document_symbols()<cr>')
+map("n", "<leader>cr", '<cmd>lua require("telescope.builtin").lsp_references()<cr>')
+map("n", "<leader>cd", '<cmd>lua require("telescope.builtin").lsp_definitions()<cr>')
+map("n", "<leader>cs", '<cmd>lua require("telescope.builtin").lsp_document_symbols()<cr>')
 -- map("n", "<leader>cn", '<cmd>lua vim.lsp.buf.rename()<cr>')
 -- map("n", "<leader>sh", '<cmd>lua vim.lsp.buf.signature_help()<cr>')
 
@@ -43,3 +43,18 @@ map("n", "<leader>xq", '<cmd>Trouble quickfix<cr>')
 map("n", "<leader>xl", '<cmd>Trouble loclist<cr>')
 --map("n", "gR",'<cmd>Trouble lsp_references<cr>')
 --map("n", "K", '<cmd>lua vim.diagnostic.open_float()<cr>')
+--
+
+map("n", "<leader>dG", '<cmd>lua require("setup/vimspector").generate_debug_profile()<cr>')
+map("n", "<leader>dI", '<cmd>call vimspector#Install()<cr>')
+map("n", "<leader>dU", '<cmd>call vimspector#Update()<cr>')
+map("n", "<leader>dr", '<cmd>call vimspector#RunToCursor()<cr>')
+map("n", "<leader>dc", '<cmd>call vimspector#Continue()<cr>')
+map("n", "<leader>di", '<cmd>call vimspector#StepInto()<cr>')
+map("n", "<leader>do", '<cmd>call vimspector#StepOver()<cr>')
+map("n", "<leader>ds", '<cmd>call vimspector#Launch()<cr>')
+map("n", "<leader>dt", '<cmd>call vimspector#ToggleBreakpoint()<cr>')
+map("n", "<leader>dS", '<cmd>call vimspector#Stop()<cr>')
+map("n", "<leader>dR", '<cmd>call vimspector#Restart()<cr>')
+map("n", "<leader>dx", '<cmd>VimspectorReset<cr>')
+map("n", "<leader>dH", '<cmd>lua require("setup/vimspector").toggle_human_mode()<cr>')

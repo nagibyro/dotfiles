@@ -16,7 +16,7 @@ end
 
 vim.cmd [[packadd packer.nvim]]
 
-function get_setup(name)
+local function get_setup(name)
   return string.format('require("setup/%s")', name)
 end
 
@@ -39,7 +39,7 @@ require("packer").startup(function(use)
     "kyazdani42/nvim-web-devicons",
     config = get_setup("dev-icons"),
   }
-  
+
 
   use 'tpope/vim-surround'
   use {
@@ -83,7 +83,7 @@ use {
 --     get_setup("lsp_signature")
 --   }
 -- }
- 
+
 -- Theme
 use {
   "EdenEast/nightfox.nvim",
@@ -104,7 +104,7 @@ use {
   config = {
     get_setup("telescope")
   },
-  requires = { 
+  requires = {
     { "nvim-lua/plenary.nvim" },
     { "BurntSushi/ripgrep" },
     { "nvim-telescope/telescope-fzf-native.nvim", run = "make" }
@@ -116,6 +116,16 @@ use {
   "folke/trouble.nvim",
   requires = "kyazdani42/nvim-web-devicons",
   config = get_setup("trouble")
+}
+
+--debugger
+use {
+  "puremourning/vimspector",
+  cmd = { "VimspectorInstall", "VimspectorUpdate" },
+  fn = { "vimspector#Launch()",  "vimspector#ToggleBreakpoint", "vimspector#Continue" },
+  config = function()
+    require(get_setup("vimspector")).setup()
+  end
 }
 
 end)

@@ -119,6 +119,7 @@ setup_git() {
   git config --global user.name "${name:-$defaultName}"
   git config --global user.email "${email:-$defaultEmail}"
 
+
   if [ -e $HOME/.gitignore ]; then
     rm $HOME/.gitignore
   fi
@@ -126,6 +127,8 @@ setup_git() {
   if [ ! -e $HOME/dotfiles/git/gitignore ]; then
     cp $HOME/dotfiles/git/gitignore-sample $HOME/dotfiles/git/gitignore
   fi
+
+  git config --global core.excludesfile "${HOME}/.gitignore"
 
   symlink $HOME/dotfiles/git/gitignore $HOME/.gitignore
 }
