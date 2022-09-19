@@ -7,7 +7,7 @@ vim.o.mouse = 'v'                           -- use mouse in visual mode
 vim.o.hlsearch = true                       -- highlight search results
 vim.o.wildmode = 'list:longest'             -- command-line completion mode
 
-vim.o.colorcolumn = "80,120"                -- set color at column length
+vim.o.colorcolumn = "99,120"                -- set color at column length
 
 vim.o.listchars = "tab:>-,trail:·,extends:>,precedes:<" --invisible chars
 vim.o.list = true                           -- show invisible chars
