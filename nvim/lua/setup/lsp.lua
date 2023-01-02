@@ -33,7 +33,7 @@ local lsp_defaults = {
   flags = {
     debounce_text_changes = 150,
   },
-  capabilities = require("cmp_nvim_lsp").update_capabilities(
+  capabilities = require("cmp_nvim_lsp").default_capabilities(
     vim.lsp.protocol.make_client_capabilities()
   ),
   on_attach = function(client, bufnr)
@@ -60,6 +60,7 @@ lspconfig.sumneko_lua.setup({
       },
       workspace = {
         library = vim.api.nvim_get_runtime_file("", true),
+        checkThirdParty = false,
         maxPreload = 10000,
         preloadFileSize = 1000,
       }
@@ -80,4 +81,9 @@ lspconfig.pyright.setup({
     client.config.settings.python.pythonPath = python_util.get_python_path(client.config.root_dir)
   end
 })
-
+lspconfig.awk_ls.setup({})
+lspconfig.ansiblels.setup({})
+lspconfig.sqlls.setup({})
+lspconfig.esbonio.setup({})
+lspconfig.svelte.setup({})
+lspconfig.terraformls.setup({})

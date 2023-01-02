@@ -26,9 +26,45 @@ require("packer").startup(function(use)
   }
 
   use {
+    "williamboman/mason.nvim",
+    config = function() require("mason").setup() end,
+    after = "nvim-lspconfig",
+  }
+
+  use {
+    "williamboman/mason-lspconfig.nvim",
+    config = function() 
+      local mason_lsp = require("mason-lspconfig") 
+      mason_lsp.setup({
+        ensure_installed = {
+          "sumneko_lua",
+          "awk_ls",
+          "ansiblels",
+          "yamlls",
+          "rust_analyzer",
+          "tsserver",
+          "bashls",
+          "eslint",
+          "cssls",
+          "dockerls",
+          "html",
+          "jsonls",
+          "pyright",
+          "sqlls",
+          "esbonio",
+          "svelte",
+          "terraformls",
+        }
+      })
+    end,
+    after = "mason.nvim",
+  }
+
+  use {
     'neovim/nvim-lspconfig',
     config = get_setup("lsp"),
   }
+
   use {
     'nvim-treesitter/nvim-treesitter',
     config = get_setup("treesitter"),
