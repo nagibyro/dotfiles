@@ -38,7 +38,7 @@ vim.o.backup = false                        -- dont make backup files
 vim.o.incsearch = true                      -- show match while typing
 opt.inccommand = "split"                    -- get a preview of replacements
 
-vim.wo.signcolumn = 'yes'
+vim.wo.signcolumn = 'auto:2-6'
 vim.o.scrolloff = 3           -- start scrolling before cursor reaches an edge
 vim.o.sidescrolloff = 1       -- start scrolling before cursor reaches an edge
 
@@ -56,7 +56,6 @@ opt.hidden = true             -- enable background buffers
 vim.o.lazyredraw = true
 opt.linebreak = true
 opt.showmode = false
-opt.signcolumn = "number"
 opt.splitbelow = true
 opt.splitright = true
 
