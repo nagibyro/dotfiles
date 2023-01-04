@@ -2,7 +2,7 @@ local M = {}
 
 local lsp_util = require('lspconfig/util')
 
-function M.get_python_path(workspace)
+function M.find_app_python(workspace)
   -- Use activated virtualenv.
   if vim.env.VIRTUAL_ENV then
     return lsp_util.path.join(vim.env.VIRTUAL_ENV, 'bin', 'python')
@@ -25,6 +25,16 @@ function M.get_python_path(workspace)
 
   -- Fallback to system Python.
   return vim.fn.exepath('python3') or vim.fn.exepath('python') or 'python'
+end
+
+function M.find_host_python()
+  local neovimVenv = vim.fn.expand("~/venv/neovim")
+
+  if vim.fn.isdirectory(neovimVenv) then
+    return neovimVenv .. "/bin/python"
+  else
+    vim.g.pyton3_host_prog = vim.fn.exepath('python3') or vim.fn.exepath('python') or 'python'
+  end
 end
 
 return M

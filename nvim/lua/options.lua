@@ -1,3 +1,5 @@
+local python_utils = require('python-utils')
+
 local vim = vim
 local opt = vim.opt
 local api = vim.api
@@ -59,12 +61,4 @@ opt.showmode = false
 opt.splitbelow = true
 opt.splitright = true
 
-local function find_host_python()
-  local neovimVenv = vim.fn.expand("~/venv/neovim")
-
-  if vim.fn.isdirectory(neovimVenv) then
-    vim.g.python3_host_prog = neovimVenv .. "/bin/python"
-  end
-end
-
-find_host_python()
+vim.g.pyton3_host_prog = python_utils.find_host_python()

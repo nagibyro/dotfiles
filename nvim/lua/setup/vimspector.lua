@@ -46,7 +46,7 @@ function M.generate_debug_profile()
     local homeDir = vim.fn.expand("~")
     local workspace_dir = vim.fn.finddir(string.format('.git/..;%s', homeDir))
 
-    local python3 = python_utils.get_python_path(workspace_dir)
+    local python3 = python_utils.find_app_python(workspace_dir)
 
     local debug_profile = string.format(vimspector_python, python3)
 
