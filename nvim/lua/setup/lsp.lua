@@ -16,7 +16,7 @@ vim.api.nvim_create_autocmd('User', {
     bufmap('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<cr>')
     bufmap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<cr>')
     bufmap('n', 'go', '<cmd>lua vim.lsp.buf.type_definition()<cr>')
-    bufmap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<cr>')
+    bufmap('n', 'gr', require('telescope.builtin').lsp_references)
     bufmap('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<cr>')
     bufmap('n', '<leader>cr', '<cmd>lua vim.lsp.buf.rename()<cr>')
     bufmap('n', '<C-l>', '<cmd>lua vim.lsp.buf.code_action()<cr>')
@@ -79,7 +79,18 @@ lspconfig.jsonls.setup({})
 lspconfig.pyright.setup({
   on_init = function(client)
     client.config.settings.python.pythonPath = python_util.get_python_path(client.config.root_dir)
-  end
+  end,
+
+  settings = {
+    pyright = {
+      analysis = {
+        useLibraryCodeForTypes = true,
+        autoSearchPaths = true,
+        diagnosticMode = "workspace",
+        autoImportCompletions = true
+      }
+    }
+  }
 })
 lspconfig.awk_ls.setup({})
 lspconfig.ansiblels.setup({})

@@ -32,6 +32,7 @@ map("n", "<leader>ss", '<cmd>lua require("telescope.builtin").spell_suggest()<cr
 map("n", "<leader>cr", '<cmd>lua require("telescope.builtin").lsp_references()<cr>')
 map("n", "<leader>cd", '<cmd>lua require("telescope.builtin").lsp_definitions()<cr>')
 map("n", "<leader>cs", '<cmd>lua require("telescope.builtin").lsp_document_symbols()<cr>')
+map("n", "<leader>cw", '<cmd>lua require("telescope.builtin").lsp_workspace_symbols()<cr>')
 -- map("n", "<leader>cn", '<cmd>lua vim.lsp.buf.rename()<cr>')
 -- map("n", "<leader>sh", '<cmd>lua vim.lsp.buf.signature_help()<cr>')
 
