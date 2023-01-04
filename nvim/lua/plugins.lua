@@ -32,6 +32,33 @@ require("packer").startup(function(use)
   }
 
   use {
+    "jayp0521/mason-null-ls.nvim",
+    requires = {
+      "williamboman/mason.nvim",
+      "jose-elias-alvarez/null-ls.nvim"
+    },
+    config = function()
+      require("mason-null-ls").setup({
+        ensure_installed = {
+          'autoflake',
+          'jq',
+          'stylua',
+          'write_good',
+          'black',
+          'isort',
+          'pylint',
+          'shellcheck',
+          'taplo',
+          'actionlint',
+          'yamlfmt',
+          'codespell',
+        },
+      })
+    end,
+    after = {"mason.nvim", "null-ls.nvim"},
+  }
+
+  use {
     "williamboman/mason-lspconfig.nvim",
     config = function() 
       local mason_lsp = require("mason-lspconfig") 
@@ -57,12 +84,24 @@ require("packer").startup(function(use)
         }
       })
     end,
+    requires = {
+      { "williamboman/mason.nvim" }
+    },
     after = "mason.nvim",
   }
 
   use {
     'neovim/nvim-lspconfig',
     config = get_setup("lsp"),
+  }
+
+  use {
+    "jose-elias-alvarez/null-ls.nvim",
+    requires = {
+      'neovim/nvim-lspconfig'
+    },
+    after = {"nvim-lspconfig", "mason.nvim"},
+    config = get_setup("null_ls"),
   }
 
   use {
@@ -73,7 +112,7 @@ require("packer").startup(function(use)
 
   use {
     "kyazdani42/nvim-web-devicons",
-    config = get_setup("dev-icons"),
+    config = get_setup("dev_icons"),
   }
 
 
@@ -92,13 +131,6 @@ require("packer").startup(function(use)
     'windwp/nvim-autopairs',
     config = get_setup("autopairs"),
   }
---  use {
---    'nvim-lualine/lualine.nvim', 
---    config = get_setup("lualine"),
---    event = "VimEnter",
---    requires: { 'kyazdani42/nvim-web-devicons', opt = true }
---  }
-
 -- Completion
 use {
   "hrsh7th/nvim-cmp",
@@ -113,13 +145,6 @@ use {
     get_setup("cmp")
   }
 }
--- use {
---   "ray-x/lsp_signature.nvim",
---   config = {
---     get_setup("lsp_signature")
---   }
--- }
-
 -- Theme
 use {
   "EdenEast/nightfox.nvim",
