@@ -27,7 +27,7 @@ require("packer").startup(function(use)
 
   use {
     "williamboman/mason.nvim",
-    config = function() require("mason").setup() end,
+    config = function() require("mason").setup({}) end,
     after = "nvim-lspconfig",
   }
 
@@ -55,7 +55,7 @@ require("packer").startup(function(use)
         },
       })
     end,
-    after = {"mason.nvim", "null-ls.nvim"},
+    after = {"mason.nvim"},
   }
 
   use {
@@ -111,16 +111,16 @@ require("packer").startup(function(use)
   }
 
   use {
-    "kyazdani42/nvim-web-devicons",
+    "nvim-tree/nvim-web-devicons",
     config = get_setup("dev_icons"),
   }
 
 
   use 'tpope/vim-surround'
   use {
-    'kyazdani42/nvim-tree.lua',
+    'nvim-tree/nvim-tree.lua',
     requires = {
-      { "kyazdani42/nvim-web-devicons" }
+      { "nvim-tree/nvim-web-devicons" }
     },
     config = get_setup("tree"),
   }
@@ -175,7 +175,7 @@ use {
 
 use {
   "folke/trouble.nvim",
-  requires = "kyazdani42/nvim-web-devicons",
+  requires = "nvim-tree/nvim-web-devicons",
   config = get_setup("trouble")
 }
 
