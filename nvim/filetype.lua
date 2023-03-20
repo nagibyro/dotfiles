@@ -6,3 +6,9 @@ vim.filetype.add({
   }
 })
 
+vim.filetype.add({
+  extension = {
+    tf = 'hcl'
+  }
+})
+

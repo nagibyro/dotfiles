@@ -14,6 +14,14 @@ local M = {}
 
 local lsp_util = require('lspconfig/util')
 
+function M.find_app_python_bin()
+  if vim.env.VIRTUAL_ENV then
+    return lsp_util.path.join(vim.env.VIRTUAL_ENV, 'bin')
+  end
+
+  return nil
+end
+
 function M.find_app_python(workspace)
   -- Use activated virtualenv.
   if vim.env.VIRTUAL_ENV then

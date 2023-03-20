@@ -1,6 +1,9 @@
 local null_ls = require("null-ls")
+local python_utils = require("python-utils")
+local lsp_util = require("lspconfig/util")
 
-null_ls.setup {
+local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
+null_ls.setup({
   sources = {
     null_ls.builtins.completion.spell,
     null_ls.builtins.code_actions.shellcheck,
@@ -10,13 +13,35 @@ null_ls.setup {
     null_ls.builtins.completion.luasnip,
     null_ls.builtins.diagnostics.actionlint,
     null_ls.builtins.diagnostics.pylint.with({
-      prefer_local = true,
+      -- assuming the command is in a virtual env for now
+      command = lsp_util.path.join(python_utils.find_app_python_bin(), "pylint") or "pylint",
+      --
+      -- Prefer_local appends to the end of the CWD
+      -- so doesn't work if the venv is outside the
+      -- project probably need dynamic_command for this but that is a bit more
+      -- work to implement. Probably need to follow something like https://github.com/jose-elias-alvarez/null-ls.nvim/blob/main/lua/null-ls/helpers/command_resolver.lua#L46-L83 -- to make it work
+      -- dynamic_command = function(params)
+      -- end
     }),
     null_ls.builtins.diagnostics.write_good,
     null_ls.builtins.formatting.autoflake,
     null_ls.builtins.formatting.black,
-    null_ls.builtins.formatting.isort,
+    null_ls.builtins.formatting.isort.with({
+      command = lsp_util.path.join(python_utils.find_app_python_bin(), "isort") or "isort",
+    }),
     null_ls.builtins.formatting.jq,
     null_ls.builtins.formatting.stylua,
-  }
-}
+  },
+  on_attach = function(client, bufnr)
+    if client.supports_method("textDocument/formatting") then
+      vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
+      vim.api.nvim_create_autocmd("BufWritePre", {
+        group = augroup,
+        buffer = bufnr,
+        callback = function()
+          vim.lsp.buf.format({ bufnr = bufnr })
+        end,
+      })
+    end
+  end,
+})
