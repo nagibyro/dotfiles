@@ -64,7 +64,7 @@ require("packer").startup(function(use)
       local mason_lsp = require("mason-lspconfig") 
       mason_lsp.setup({
         ensure_installed = {
-          "sumneko_lua",
+          "lua_ls",
           "awk_ls",
           "ansiblels",
           "yamlls",
