@@ -1,21 +1,3 @@
-vim.api.nvim_exec([[
- augroup Packer
-  autocmd!
-  autocmd BufWritePost plugins.lua PackerCompile
- augroup end
-]], false)
-
-
--- Install packer
-local execute = vim.api.nvim_command
-local install_path = vim.fn.stdpath('data')..'/site/pack/packer/opt/packer.nvim'
-
-if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
-  execute('!git clone https://github.com/wbthomason/packer.nvim '..install_path)
-end
-
-vim.cmd [[packadd packer.nvim]]
-
 local function get_setup(name)
   return string.format('require("setup/%s")', name)
 end
@@ -94,6 +76,9 @@ require("packer").startup(function(use)
     'neovim/nvim-lspconfig',
     config = get_setup("lsp"),
   }
+
+  use 'j-hui/fidget.nvim'
+  get_setup('fidget')
 
   use {
     "jose-elias-alvarez/null-ls.nvim",
@@ -199,3 +184,9 @@ use {
 
 end)
 
+local packer_group = vim.api.nvim_create_augroup('Packer', { clear = true })
+vim.api.nvim_create_autocmd('BufWritePost', {
+  command = 'source <afile> | PackerCompile',
+  group = packer_group,
+  pattern = vim.fn.expand '$MYVIMRC',
+})
