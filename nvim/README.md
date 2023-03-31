@@ -28,3 +28,21 @@ TODO: automate installing system dependencies.
 - A patched [Nerdfont](https://gist.github.com/davidteren/898f2dcccd42d9f8680ec69a3a5d350e)
 
 
+## Plugin Troubleshooting
+### PackerSync fails with Not possible to fast-forward, aborting.
+
+This can happen when plugin owners rewrite history on a public branch. Packer
+by default does a git pull with the --ff-only option. The simplest way to fix
+this issue is to:
+
+1. Comment out offending plugin
+2. restart nvim
+3. Run `:PackerSync` to remove the plugin
+4. Uncomment Plugin
+5. Restart nvim
+6. Run `:PackerSync` to get the latest version
+
+see:
+ - [Packer issue #327](https://github.com/wbthomason/packer.nvim/issues/327)
+ - [Packer issue #760](https://github.com/wbthomason/packer.nvim/issues/760#issuecomment-1460290691)
+ 

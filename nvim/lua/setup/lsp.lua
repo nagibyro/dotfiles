@@ -53,6 +53,8 @@ local lsp_defaults = {
   end,
 }
 
+-- IMPORTANT: make sure to setup neodev BEFORE lspconfig
+require("neodev").setup({})
 local lspconfig = require("lspconfig")
 
 lspconfig.util.default_config = vim.tbl_deep_extend("force", lspconfig.util.default_config, lsp_defaults)
@@ -60,18 +62,8 @@ lspconfig.util.default_config = vim.tbl_deep_extend("force", lspconfig.util.defa
 lspconfig.lua_ls.setup({
   settings = {
     Lua = {
-      runtime = {
-        version = "LuaJIT",
-      },
-      diagnostics = {
-        globals = { "vim" },
-      },
-      workspace = {
-        library = vim.api.nvim_get_runtime_file("", true),
-        checkThirdParty = false,
-        maxPreload = 10000,
-        preloadFileSize = 1000,
-      },
+      telemetry = { enable = false },
+      workspace = { checkThirdParty = false },
     },
   },
 })

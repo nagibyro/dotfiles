@@ -77,6 +77,10 @@ require("packer").startup(function(use)
   use({
     "neovim/nvim-lspconfig",
     config = get_setup("lsp"),
+    requires = {
+      "j-hui/fidget.nvim",
+      "folke/neodev.nvim",
+    },
   })
 
   use("j-hui/fidget.nvim")
@@ -93,6 +97,9 @@ require("packer").startup(function(use)
 
   use({
     "nvim-treesitter/nvim-treesitter",
+    requires = {
+      "nvim-treesitter/nvim-treesitter-textobjects",
+    },
     config = get_setup("treesitter"),
     run = ":TSUpdate",
   })
@@ -126,7 +133,7 @@ require("packer").startup(function(use)
       { "hrsh7th/cmp-nvim-lua" },
       { "hrsh7th/cmp-nvim-lsp" },
       { "saadparwaiz1/cmp_luasnip" },
-      { "onsails/lspkind" },
+      { "onsails/lspkind.nvim" },
     },
     config = {
       get_setup("cmp"),
@@ -183,6 +190,18 @@ require("packer").startup(function(use)
       vim.g.mkdp_filetypes = { "markdown" }
     end,
     ft = { "markdown" },
+  })
+
+  use({
+    -- Adds git related signs to the gutter, as well as utilities for managing changes
+    "lewis6991/gitsigns.nvim",
+    config = get_setup("gitsigns"),
+  })
+
+  use({
+    -- Adds git related signs to the gutter, as well as utilities for managing changes
+    "nvim-lualine/lualine.nvim",
+    config = get_setup("lualine"),
   })
 end)
 

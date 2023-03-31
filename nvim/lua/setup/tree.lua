@@ -15,14 +15,6 @@ end
 
 -- local function close_nvim_tree()
 --   local layout = vim.api.nvim_call_function("winlayout", {})
-<<<<<<< Updated upstream
---   if layout[1] == "leaf"
---   and vim.api.nvim_buf_get_option(vim.api.nvim_win_get_buf(layout[2]), "filetype") == "NvimTree"
---   and layout[3] == nil then
---     vim.cmd("confirm quit")
---   end
--- end
-=======
 --   if
 --       layout[1] == "leaf"
 --       and vim.api.nvim_buf_get_option(vim.api.nvim_win_get_buf(layout[2]), "filetype") == "NvimTree"
@@ -41,18 +33,12 @@ end
 --   end
 --   return t
 -- end
->>>>>>> Stashed changes
 
 vim.api.nvim_create_autocmd("VimEnter", {
   group = vim.api.nvim_create_augroup("UserNvimTreeOpen", { clear = true }),
   callback = open_nvim_tree,
 })
 
-<<<<<<< Updated upstream
--- vim.api.nvim_create_autocmd("BufEnter", {
---   group = vim.api.nvim_create_augroup("UserNvimTreeClose", { clear = true }),
---   callback = close_nvim_tree
-=======
 -- This doesn't play nice with telescope. I found for my workflow its common to
 -- open a project at it's root using `vim .` then drop into telescope fuzzy
 -- finder to open the file I want. The autoclose functionality messes with that
@@ -75,7 +61,6 @@ vim.api.nvim_create_autocmd("VimEnter", {
 --     end
 --   end,
 --   -- callback = close_nvim_tree,
->>>>>>> Stashed changes
 -- })
 
 require("nvim-tree").setup({
@@ -122,11 +107,3 @@ require("nvim-tree").setup({
     adaptive_size = true,
   },
 })
-
--- interferes with telescope when trying to find a file with no files open
--- I think telescope buffer exits before it loads the file then this auto
--- command quits neovim. More research required
---
--- vim.api.nvim_exec([[
---   autocmd BufEnter * ++nested if winnr('$') == 1 && bufname() == 'NvimTree_' . tabpagenr() | quit | endif
--- ]], false)
