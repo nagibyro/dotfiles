@@ -1,33 +1,3 @@
--- reference https://gist.github.com/VonHeikemen/8fc2aa6da030757a5612393d0ae060bd
---
---
--- This autocommand is invoked when lsp server is attached to the buffer
-vim.api.nvim_create_autocmd("User", {
-  pattern = "LspAttached",
-  desc = "LSP actions",
-  callback = function()
-    local bufmap = function(mode, lhs, rhs)
-      local opts = { buffer = true }
-      vim.keymap.set(mode, lhs, rhs, opts)
-    end
-
-    bufmap("n", "K", "<cmd>lua vim.lsp.buf.hover()<cr>")
-    bufmap("n", "gd", "<cmd>lua vim.lsp.buf.definition()<cr>")
-    bufmap("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<cr>")
-    bufmap("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<cr>")
-    bufmap("n", "go", "<cmd>lua vim.lsp.buf.type_definition()<cr>")
-    bufmap("n", "gr", require("telescope.builtin").lsp_references)
-    bufmap("n", "<C-k>", "<cmd>lua vim.lsp.buf.signature_help()<cr>")
-    bufmap("n", "<leader>cr", "<cmd>lua vim.lsp.buf.rename()<cr>")
-    bufmap("n", "<C-l>", "<cmd>lua vim.lsp.buf.code_action()<cr>")
-    bufmap("n", "<leader>cf", "<cmd>lua vim.lsp.buf.format()<cr>")
-    bufmap("x", "<F4>", "<cmd>lua vim.lsp.buf.range_code_action()<cr>")
-    bufmap("n", "gl", "<cmd>lua vim.diagnostic.open_float()<cr>")
-    bufmap("n", "[d", "<cmd>lua vim.diagnostic.goto_prev()<cr>")
-    bufmap("n", "]d", "<cmd>lua vim.diagnostic.goto_next()<cr>")
-  end,
-})
-
 local python_util = require("python-utils")
 
 local lsp_defaults = {
@@ -36,7 +6,50 @@ local lsp_defaults = {
   },
   capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities()),
   on_attach = function(client, bufnr)
-    vim.api.nvim_exec_autocmds("User", { pattern = "LspAttached" })
+    local opts = { buffer = bufnr, remap = false }
+
+    vim.keymap.set("n", "K", function()
+      vim.lsp.buf.hover()
+    end, opts)
+    vim.keymap.set("n", "gd", function()
+      vim.lsp.buf.definition()
+    end, opts)
+    vim.keymap.set("n", "gD", function()
+      vim.lsp.buf.declaration()
+    end, opts)
+    vim.keymap.set("n", "gi", function()
+      vim.lsp.buf.implementation()
+    end, opts)
+    vim.keymap.set("n", "go", function()
+      vim.lsp.buf.type_definition()
+    end, opts)
+    vim.keymap.set("n", "gr", function()
+      require("telescope.builtin").lsp_references()
+    end, opts)
+    vim.keymap.set("n", "<C-h>", function()
+      vim.lsp.buf.signature_help()
+    end, opts)
+    vim.keymap.set("n", "<leader>cr", function()
+      vim.lsp.buf.rename()
+    end, opts)
+    vim.keymap.set("n", "<C-l>", function()
+      vim.lsp.buf.code_action()
+    end, opts)
+    vim.keymap.set("n", "<leader>cf", function()
+      vim.lsp.buf.format()
+    end, opts)
+    vim.keymap.set("x", "<F4>", function()
+      vim.lsp.buf.range_code_action()
+    end, opts)
+    vim.keymap.set("n", "gl", function()
+      vim.diagnostic.open_float()
+    end, opts)
+    vim.keymap.set("n", "[d", function()
+      vim.diagnostic.goto_prev()
+    end, opts)
+    vim.keymap.set("n", "]d", function()
+      vim.diagnostic.goto_next()
+    end, opts)
   end,
 }
 
@@ -62,7 +75,21 @@ lspconfig.lua_ls.setup({
     },
   },
 })
-lspconfig.yamlls.setup({})
+lspconfig.yamlls.setup({
+  settings = {
+    yaml = {
+      schemaStore = {
+        enable = true,
+      },
+      format = {
+        enable = true,
+        bracketSpacing = true,
+      },
+      validate = true,
+    },
+    keyOrdering = false,
+  },
+})
 lspconfig.rust_analyzer.setup({})
 lspconfig.tsserver.setup({})
 lspconfig.bashls.setup({})

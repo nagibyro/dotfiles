@@ -24,7 +24,9 @@ null_ls.setup({
       -- end
     }),
     null_ls.builtins.diagnostics.write_good,
-    null_ls.builtins.formatting.autoflake,
+    null_ls.builtins.formatting.autoflake.with({
+      extra_args = { "--remove-all-unused-imports", "--remove-unused-variables" },
+    }),
     null_ls.builtins.formatting.black,
     null_ls.builtins.formatting.isort.with({
       command = lsp_util.path.join(python_utils.find_app_python_bin(), "isort") or "isort",
