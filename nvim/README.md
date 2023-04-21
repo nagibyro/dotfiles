@@ -27,6 +27,18 @@ TODO: automate installing system dependencies.
 - [fd](https://github.com/sharkdp/fd#installation)
 - A patched [Nerdfont](https://gist.github.com/davidteren/898f2dcccd42d9f8680ec69a3a5d350e)
 
+### Create a python venv in home
+Vimspector (debug plugin) and other functionality relies on a python install
+with the neovim package installed to talk to neovim API's. Best to keep this
+seperate from the main system python so stuff doesn't get screwed up.
+
+1. `python -m venv $HOME/venv/neovim`
+2. `cd $HOME/venv && source bin/activate`
+3. `pip install neovim`
+4. `exit`
+
+the `find_host_python` function in `mappings.lua` will use this venv by default
+to set the `vim.g.python3_host_prog`
 
 ## Plugin Troubleshooting
 ### PackerSync fails with Not possible to fast-forward, aborting.
