@@ -62,4 +62,6 @@ opt.showmode = false
 opt.splitbelow = true
 opt.splitright = true
 
+vim.o.exrc = true
+
 vim.g.python3_host_prog = python_utils.find_host_python()

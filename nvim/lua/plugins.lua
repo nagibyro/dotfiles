@@ -119,7 +119,15 @@ require("packer").startup(function(use)
   })
 
   use("tpope/vim-commentary")
-  use("L3MON4D3/luaSnip")
+
+  use({
+    "L3MON4D3/luaSnip",
+    config = {
+      get_setup("luasnip"),
+    },
+  })
+  use("rafamadriz/friendly-snippets")
+
   use({
     "windwp/nvim-autopairs",
     config = get_setup("autopairs"),
@@ -162,7 +170,11 @@ require("packer").startup(function(use)
     requires = {
       { "nvim-lua/plenary.nvim" },
       { "BurntSushi/ripgrep" },
-      { "nvim-telescope/telescope-fzf-native.nvim", run = "make" },
+      {
+        "nvim-telescope/telescope-fzf-native.nvim",
+        run =
+        "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build",
+      },
     },
   })
 
@@ -199,9 +211,21 @@ require("packer").startup(function(use)
   })
 
   use({
-    -- Adds git related signs to the gutter, as well as utilities for managing changes
     "nvim-lualine/lualine.nvim",
     config = get_setup("lualine"),
+  })
+
+  use({
+    -- Adds git related signs to the gutter, as well as utilities for managing changes
+    "akinsho/toggleterm.nvim",
+    tags = "*",
+    config = get_setup("toggleterm"),
+  })
+
+  use({
+    -- Adds git related signs to the gutter, as well as utilities for managing changes
+    "folke/which-key.nvim",
+    config = get_setup("which-key"),
   })
 end)
 

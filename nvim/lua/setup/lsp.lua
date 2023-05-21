@@ -1,10 +1,15 @@
 local python_util = require("python-utils")
 
+local client_capabilities = vim.lsp.protocol.make_client_capabilities()
+--client_capabilities.textDocument.completionItem.snippetSupport = true
+
+local capabilities = require("cmp_nvim_lsp").default_capabilities(client_capabilities)
+
 local lsp_defaults = {
   flags = {
     debounce_text_changes = 150,
   },
-  capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities()),
+  capabilities = capabilities,
   on_attach = function(client, bufnr)
     local opts = { buffer = bufnr, remap = false }
 
@@ -88,7 +93,9 @@ lspconfig.bashls.setup({})
 lspconfig.eslint.setup({})
 lspconfig.cssls.setup({})
 lspconfig.dockerls.setup({})
-lspconfig.html.setup({})
+lspconfig.html.setup({
+  filetypes = { "html", "htmldjango" },
+})
 lspconfig.jsonls.setup({})
 lspconfig.pyright.setup({
   on_init = function(client)
