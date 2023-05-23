@@ -1,5 +1,3 @@
-vim.g.mapleader = ","
-
 -- escape
 vim.keymap.set("i", "jk", "<esc>", { desc = "Exit insert mode. Alt for [ESC]" })
 

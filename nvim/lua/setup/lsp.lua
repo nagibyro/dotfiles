@@ -87,7 +87,6 @@ lspconfig.yamlls.setup({
     keyOrdering = false,
   },
 })
-lspconfig.rust_analyzer.setup({})
 lspconfig.tsserver.setup({})
 lspconfig.bashls.setup({})
 lspconfig.eslint.setup({})

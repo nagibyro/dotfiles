@@ -1,5 +1,3 @@
-local python_utils = require("python-utils")
-
 local vim = vim
 local opt = vim.opt
 local api = vim.api
@@ -63,5 +61,3 @@ opt.splitbelow = true
 opt.splitright = true
 
 vim.o.exrc = true
-
-vim.g.python3_host_prog = python_utils.find_host_python()
