@@ -13,10 +13,8 @@ using lua with NeoVim.
   - His neovim [config](https://github.com/tjdevries/config_manager/blob/master/xdg_config/nvim/init.lua) is very good and well commented.
 
 # Plugin Installation
-I use [packer.nvim](https://github.com/wbthomason/packer.nvim) to manage
-my plugins. Invoking neovim will auto install packer for you but does not
-download all the plugins. If doing a fresh install open neovim and wait for
-packer to install. Then run `:PackerSync` to install plugins.
+I use [lazy.nvim](https://github.com/folke/lazy.nvim) to manage
+my plugins. Invoking neovim will auto install lazy.nvim
 
 ## Plugin System Dependencies
 TODO: automate installing system dependencies.
@@ -39,22 +37,3 @@ seperate from the main system python so stuff doesn't get screwed up.
 
 the `find_host_python` function in `mappings.lua` will use this venv by default
 to set the `vim.g.python3_host_prog`
-
-## Plugin Troubleshooting
-### PackerSync fails with Not possible to fast-forward, aborting.
-
-This can happen when plugin owners rewrite history on a public branch. Packer
-by default does a git pull with the --ff-only option. The simplest way to fix
-this issue is to:
-
-1. Comment out offending plugin
-2. restart nvim
-3. Run `:PackerSync` to remove the plugin
-4. Uncomment Plugin
-5. Restart nvim
-6. Run `:PackerSync` to get the latest version
-
-see:
- - [Packer issue #327](https://github.com/wbthomason/packer.nvim/issues/327)
- - [Packer issue #760](https://github.com/wbthomason/packer.nvim/issues/760#issuecomment-1460290691)
- 

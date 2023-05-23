@@ -1,16 +1,5 @@
 local M = {}
 
---
--- Relying on lspconfig/utils is bad here since on a fresh nvim install we have
--- not installed lspconfig via lazyj but we call python utils in nvim setup
--- which will error because lspconfig is not installed. So bit of a chicken and
--- egg problem here.
---
--- Temp workaround comment out lsp_util require and comment out everything in
--- find_app_python till fallback to system python. Get Packer installed and Run
--- sync then uncomment everything. (sucks I know)
---
-
 local lsp_util = require("lspconfig/util")
 
 function M.find_app_python_bin()
