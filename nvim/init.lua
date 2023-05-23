@@ -16,6 +16,6 @@ require("options")
 require("mappings")
 require("plugins")
 
---python utils requires plugins to be loaded first
+--python utils requires some of the plugins to be loaded first
 local python_utils = require("python-utils")
 vim.g.python3_host_prog = python_utils.find_host_python()

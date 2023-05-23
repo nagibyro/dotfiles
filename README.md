@@ -53,4 +53,3 @@ Set config for [sway window manager](https://wiki.archlinux.org/title/Sway)
 
 - `./install.sh sway`
 
-
