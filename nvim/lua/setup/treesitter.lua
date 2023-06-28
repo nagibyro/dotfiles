@@ -56,6 +56,7 @@ ts.setup({
     "toml",
     "tsx",
     "typescript",
+    "terraform",
     "vim",
     "vue",
     "yaml",

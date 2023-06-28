@@ -25,6 +25,7 @@ null_ls.setup({
       -- end
     }),
     null_ls.builtins.diagnostics.write_good,
+    null_ls.builtins.diagnostics.terraform_validate,
     null_ls.builtins.formatting.autoflake.with({
       extra_args = { "--remove-all-unused-imports", "--remove-unused-variables", "--ignore-init-module-imports" },
     }),
@@ -34,6 +35,7 @@ null_ls.setup({
     }),
     null_ls.builtins.formatting.jq,
     null_ls.builtins.formatting.stylua,
+    null_ls.builtins.formatting.terraform_fmt,
   },
   on_attach = function(client, bufnr)
     if client.supports_method("textDocument/formatting") then

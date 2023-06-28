@@ -31,7 +31,7 @@ local lsp_defaults = {
     vim.keymap.set("n", "gr", function()
       require("telescope.builtin").lsp_references()
     end, opts)
-    vim.keymap.set("n", "<C-h>", function()
+    vim.keymap.set("n", "<C-k>", function()
       vim.lsp.buf.signature_help()
     end, opts)
     vim.keymap.set("n", "<leader>cr", function()

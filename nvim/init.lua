@@ -15,7 +15,17 @@ vim.g.mapleader = "," --lazy needs leader key before running setup
 require("options")
 require("mappings")
 require("plugins")
+--require("run_python_test")
 
 --python utils requires some of the plugins to be loaded first
 local python_utils = require("python-utils")
 vim.g.python3_host_prog = python_utils.find_host_python()
+
+--fix terraform and hcl comment string
+vim.api.nvim_create_autocmd("FileType", {
+  group = vim.api.nvim_create_augroup("FixTerraformCommentString", { clear = true }),
+  callback = function(ev)
+    vim.bo[ev.buf].commentstring = "# %s"
+  end,
+  pattern = { "terraform", "hcl" },
+})

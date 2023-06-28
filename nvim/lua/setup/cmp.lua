@@ -7,7 +7,7 @@ require("luasnip.loaders.from_vscode").lazy_load()
 local select_opts = { behavior = cmp.SelectBehavior.Select }
 
 cmp.setup({
-  mapping = {
+  mapping = cmp.mapping.preset.insert({
     ["<C-n>"] = cmp.mapping.select_next_item(select_opts),
     ["<C-p>"] = cmp.mapping.select_prev_item(select_opts),
     ["<C-d>"] = cmp.mapping.scroll_docs(-4),
@@ -31,7 +31,7 @@ cmp.setup({
         end
       end,
     }),
-  },
+  }),
   sources = {
     { name = "nvim_lsp" },
     { name = "luasnip" },
