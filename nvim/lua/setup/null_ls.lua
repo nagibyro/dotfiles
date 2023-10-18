@@ -3,6 +3,7 @@ local python_utils = require("python-utils")
 local lsp_util = require("lspconfig/util")
 
 local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
+
 null_ls.setup({
   sources = {
     null_ls.builtins.completion.spell,
@@ -27,7 +28,12 @@ null_ls.setup({
     null_ls.builtins.diagnostics.write_good,
     null_ls.builtins.diagnostics.terraform_validate,
     null_ls.builtins.formatting.autoflake.with({
-      extra_args = { "--remove-all-unused-imports", "--remove-unused-variables", "--ignore-init-module-imports" },
+      extra_args = {
+        "--remove-all-unused-imports",
+        "--remove-unused-variables",
+        "--ignore-init-module-imports",
+        "--ignore-pass-statements",
+      },
     }),
     -- null_ls.builtins.formatting.black,
     null_ls.builtins.formatting.isort.with({

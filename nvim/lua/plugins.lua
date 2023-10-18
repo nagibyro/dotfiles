@@ -36,6 +36,7 @@ require("lazy").setup({
           "codespell",
           "codelldb",
           "tflint",
+          "djlint",
         },
       })
     end,
@@ -60,16 +61,32 @@ require("lazy").setup({
           "html",
           "jsonls",
           "pyright",
+          "jedi_language_server",
           "sqlls",
           "esbonio",
           "svelte",
           "terraformls",
+          "emmet_language_server",
+          "ruff_lsp",
         },
       })
     end,
     dependencies = {
       { "williamboman/mason.nvim" },
     },
+  },
+
+  {
+    "utilyre/sentiment.nvim",
+    version = "*",
+    event = "VeryLazy", -- keep for lazy loading
+    opts = {
+      -- config
+    },
+    init = function()
+      -- `matchparen.vim` needs to be disabled manually in case of lazy loading
+      vim.g.loaded_matchparen = 1
+    end,
   },
 
   {
@@ -89,6 +106,7 @@ require("lazy").setup({
 
   {
     "j-hui/fidget.nvim",
+    tag = "legacy",
     config = get_setup("fidget"),
   },
 
@@ -104,6 +122,8 @@ require("lazy").setup({
     "nvim-treesitter/nvim-treesitter",
     dependencies = {
       "nvim-treesitter/nvim-treesitter-textobjects",
+      "nvim-treesitter/nvim-treesitter-context",
+      "windwp/nvim-ts-autotag",
     },
     config = get_setup("treesitter"),
     build = ":TSUpdate",
@@ -113,8 +133,6 @@ require("lazy").setup({
     "nvim-tree/nvim-web-devicons",
     config = get_setup("dev_icons"),
   },
-
-  "tpope/vim-surround",
 
   {
     "nvim-tree/nvim-tree.lua",
@@ -220,15 +238,20 @@ require("lazy").setup({
   },
 
   {
-    -- Adds git related signs to the gutter, as well as utilities for managing changes
     "akinsho/toggleterm.nvim",
     version = "*",
     config = get_setup("toggleterm"),
   },
 
   {
-    -- Adds git related signs to the gutter, as well as utilities for managing changes
-    "folke/which-key.nvim",
-    config = get_setup("which_key"),
+    "kylechui/nvim-surround",
+    version = "*",
+    event = "VeryLazy",
+    config = get_setup("surround"),
+  },
+
+  {
+    "microsoft/python-type-stubs",
+    cond = false,
   },
 })

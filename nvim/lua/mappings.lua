@@ -53,7 +53,7 @@ vim.keymap.set("n", "<leader>ss", '<cmd>lua require("telescope.builtin").spell_s
 vim.keymap.set("n", "<leader>cr", '<cmd>lua require("telescope.builtin").lsp_references()<cr>')
 vim.keymap.set("n", "<leader>cd", '<cmd>lua require("telescope.builtin").lsp_definitions()<cr>')
 vim.keymap.set("n", "<leader>cs", '<cmd>lua require("telescope.builtin").lsp_document_symbols()<cr>')
-vim.keymap.set("n", "<leader>cw", '<cmd>lua require("telescope.builtin").lsp_workspace_symbols()<cr>')
+vim.keymap.set("n", "<leader>cw", '<cmd>lua require("telescope.builtin").lsp_dynamic_workspace_symbols()<cr>')
 
 --Code trouble & hints
 vim.keymap.set("n", "<leader>xx", "<cmd>Trouble<cr>")

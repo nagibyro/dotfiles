@@ -30,6 +30,9 @@ alias lg="git log --graph --abbrev-commit --date=relative"
 alias glg="git log --graph --abbrev-commit --date=relative"
 alias gfa="git fetch --all -p"
 
+# terraform
+alias tf="terraform"
+
 #env
 alias env="env | sort"
 
@@ -37,3 +40,4 @@ alias uuidgen='uuidgen | tr "[:upper:]" "[:lower:]"'
 
 export EDITOR=/usr/bin/nvim
 #PS1="\[\e[1;37m\][\u@\h]\[\e[1;35m\] \w: \[\e[0;36m\]"
+#

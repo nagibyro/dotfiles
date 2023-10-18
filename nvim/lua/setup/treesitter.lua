@@ -8,6 +8,7 @@ require("nvim-treesitter.configs").setup({
     enable = true,
     filetypes = {
       "html",
+      "htmldjango",
       "javascript",
       "typescript",
       "markdown",
@@ -22,10 +23,6 @@ require("nvim-treesitter.configs").setup({
       node_decremental = "<TAB>",
     },
   },
-})
--- Setup treesitter
-local ts = require("nvim-treesitter.configs")
-ts.setup({
   ensure_installed = {
     "bash",
     "lua",
@@ -41,6 +38,7 @@ ts.setup({
     "graphql",
     "hcl",
     "html",
+    "htmldjango",
     "http",
     "java",
     "javascript",

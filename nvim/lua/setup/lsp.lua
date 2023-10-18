@@ -1,9 +1,8 @@
 local python_util = require("python-utils")
 
-local client_capabilities = vim.lsp.protocol.make_client_capabilities()
+--local client_capabilities = vim.lsp.protocol.make_client_capabilities()
 --client_capabilities.textDocument.completionItem.snippetSupport = true
-
-local capabilities = require("cmp_nvim_lsp").default_capabilities(client_capabilities)
+local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
 local lsp_defaults = {
   flags = {
@@ -69,6 +68,9 @@ lspconfig.lua_ls.setup({
     Lua = {
       telemetry = { enable = false },
       workspace = { checkThirdParty = false },
+      completion = {
+        callSnippet = "Replace",
+      },
     },
   },
 })
@@ -96,17 +98,22 @@ lspconfig.html.setup({
   filetypes = { "html", "htmldjango" },
 })
 lspconfig.jsonls.setup({})
+lspconfig.jedi_language_server.setup({})
 lspconfig.pyright.setup({
   on_init = function(client)
     client.config.settings.python.pythonPath = python_util.find_app_python(client.config.root_dir)
   end,
   settings = {
     pyright = {
+      disableLanguageServices = true,
+      disableOrganizeImports = true,
       analysis = {
-        useLibraryCodeForTypes = true,
+        typeCheckingMode = "off",
+        useLibraryCodeForTypes = false,
         autoSearchPaths = true,
-        diagnosticMode = "workspace",
+        diagnosticMode = "openFilesOnly",
         autoImportCompletions = true,
+        stubPath = vim.fn.stdpath("data") .. "/lazy/python-type-stubs",
       },
     },
   },
@@ -117,3 +124,5 @@ lspconfig.sqlls.setup({})
 lspconfig.esbonio.setup({})
 lspconfig.svelte.setup({})
 lspconfig.terraformls.setup({})
+-- lspconfig.emmet_language_server.setup({})
+-- lspconfig.ruff_lsp.setup({})

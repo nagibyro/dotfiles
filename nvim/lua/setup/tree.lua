@@ -34,10 +34,11 @@ end
 --   return t
 -- end
 
-vim.api.nvim_create_autocmd("VimEnter", {
-  group = vim.api.nvim_create_augroup("UserNvimTreeOpen", { clear = true }),
-  callback = open_nvim_tree,
-})
+-- disable nvim tree on vim open actually not using the tree exploer as much
+-- vim.api.nvim_create_autocmd("VimEnter", {
+--   group = vim.api.nvim_create_augroup("UserNvimTreeOpen", { clear = true }),
+--   callback = open_nvim_tree,
+-- })
 
 -- This doesn't play nice with telescope. I found for my workflow its common to
 -- open a project at it's root using `vim .` then drop into telescope fuzzy
@@ -76,6 +77,7 @@ require("nvim-tree").setup({
   },
   actions = {
     open_file = {
+      quit_on_open = true,
       resize_window = true,
       window_picker = {
         enable = false,
