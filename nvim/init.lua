@@ -14,7 +14,8 @@ vim.g.mapleader = "," --lazy needs leader key before running setup
 
 require("options")
 require("mappings")
-require("plugins")
+require("lazy").setup("plugins")
+-- require("plugins")
 --require("run_python_test")
 
 --python utils requires some of the plugins to be loaded first

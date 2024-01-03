@@ -8,8 +8,8 @@
 #
 # All imports must either be absolute paths starting with `/`, or paths relative
 # to the user's home directory starting with `~/`.
-#import:
-#  - /path/to/alacritty.yml
+import:
+  - .config/alacritty/themes/themes/nightfox.yaml
 
 # Any items in the `env` entry below will be added as
 # environment variables. Some entries may override variables
@@ -128,10 +128,10 @@ font:
     # Font family
     #
     Default:
-      - (macOS) Menlo
-    #   - (Linux/BSD) monospace
+       - (macOS) Menlo
+       - (Linux/BSD) monospace
     #   - (Windows) Consolas
-    family: "Hack Nerd Font Mono"
+    family: "JetBrainsMono Nerd Font Mono"
 
     # The `style` can be specified to pick a specific face.
     #style: Regular
@@ -175,9 +175,9 @@ font:
   # Offset is the extra space around each character. `offset.y` can be thought
   # of as modifying the line spacing, and `offset.x` as modifying the letter
   # spacing.
-  #offset:
-  #  x: 0
-  #  y: 0
+  # offset:
+  #   x: 0
+  #   y: 0
 
   # Glyph offset determines the locations of the glyphs within their cells with
   # the default being at the bottom. Increasing `x` moves the glyph to the
@@ -197,11 +197,11 @@ font:
 draw_bold_text_with_bright_colors: true
 
 # Colors (Tomorrow Night)
-colors:
+#colors:
   # Default colors
-  primary:
-    background: '#36302a'
-    foreground: '#ebd0b6'
+  # primary:
+  #   background: '#36302a'
+  #   foreground: '#ebd0b6'
 
     # Bright and dim foreground colors
     #
@@ -293,26 +293,26 @@ colors:
   #  background: CellForeground
 
   # Normal colors
-  normal:
-    black:   '#16191e'
-    red:     '#d45742'
-    green:   '#95cb5d'
-    yellow:  '#f7ba3b'
-    blue:    '#01a7c5'
-    magenta: '#da774c'
-    cyan:    '#60a264'
-    white:   '#ebcfb7'
+  # normal:
+  #   black:   '#16191e'
+  #   red:     '#d45742'
+  #   green:   '#95cb5d'
+  #   yellow:  '#f7ba3b'
+  #   blue:    '#01a7c5'
+  #   magenta: '#da774c'
+  #   cyan:    '#60a264'
+  #   white:   '#ebcfb7'
 
   # Bright colors
-  bright:
-   black:   '#7a7166'
-   red:     '#ff7b6c'
-   green:   '#a6e145'
-   yellow:  '#e6da73'
-   blue:    '#6de0ff'
-   magenta: '#ffa47b'
-   cyan:    '#92ef99'
-   white:   '#f8f7ef'
+  # bright:
+  #  black:   '#7a7166'
+  #  red:     '#ff7b6c'
+  #  green:   '#a6e145'
+  #  yellow:  '#e6da73'
+  #  blue:    '#6de0ff'
+  #  magenta: '#ffa47b'
+  #  cyan:    '#92ef99'
+  #  white:   '#f8f7ef'
 
   # Dim colors
   #

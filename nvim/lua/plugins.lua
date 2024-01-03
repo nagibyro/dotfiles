@@ -5,129 +5,14 @@ local function get_setup(name)
   end
 end
 
-require("lazy").setup({
-  {
-    "williamboman/mason.nvim",
-    config = function()
-      require("mason").setup({})
-    end,
-  },
-
-  {
-    "jayp0521/mason-null-ls.nvim",
-    dependencies = {
-      "williamboman/mason.nvim",
-      "jose-elias-alvarez/null-ls.nvim",
-    },
-    config = function()
-      require("mason-null-ls").setup({
-        ensure_installed = {
-          "autoflake",
-          "jq",
-          "stylua",
-          "write_good",
-          "black",
-          "isort",
-          "pylint",
-          "shellcheck",
-          "taplo",
-          "actionlint",
-          "yamlfmt",
-          "codespell",
-          "codelldb",
-          "tflint",
-          "djlint",
-        },
-      })
-    end,
-  },
-
-  {
-    "williamboman/mason-lspconfig.nvim",
-    config = function()
-      local mason_lsp = require("mason-lspconfig")
-      mason_lsp.setup({
-        ensure_installed = {
-          "lua_ls",
-          "awk_ls",
-          "ansiblels",
-          "yamlls",
-          "rust_analyzer",
-          "tsserver",
-          "bashls",
-          "eslint",
-          "cssls",
-          "dockerls",
-          "html",
-          "jsonls",
-          "pyright",
-          "jedi_language_server",
-          "sqlls",
-          "esbonio",
-          "svelte",
-          "terraformls",
-          "emmet_language_server",
-          "ruff_lsp",
-        },
-      })
-    end,
-    dependencies = {
-      { "williamboman/mason.nvim" },
-    },
-  },
-
-  {
-    "utilyre/sentiment.nvim",
-    version = "*",
-    event = "VeryLazy", -- keep for lazy loading
-    opts = {
-      -- config
-    },
-    init = function()
-      -- `matchparen.vim` needs to be disabled manually in case of lazy loading
-      vim.g.loaded_matchparen = 1
-    end,
-  },
-
-  {
-    "neovim/nvim-lspconfig",
-    config = get_setup("lsp"),
-    dependencies = {
-      "williamboman/mason.nvim",
-      "j-hui/fidget.nvim",
-      "folke/neodev.nvim",
-    },
-  },
-
-  {
-    "simrat39/rust-tools.nvim",
-    config = get_setup("rust_tools"),
-  },
-
-  {
-    "j-hui/fidget.nvim",
-    tag = "legacy",
-    config = get_setup("fidget"),
-  },
-
-  {
-    "jose-elias-alvarez/null-ls.nvim",
-    dependencies = {
-      "neovim/nvim-lspconfig",
-    },
-    config = get_setup("null_ls"),
-  },
-
-  {
-    "nvim-treesitter/nvim-treesitter",
-    dependencies = {
-      "nvim-treesitter/nvim-treesitter-textobjects",
-      "nvim-treesitter/nvim-treesitter-context",
-      "windwp/nvim-ts-autotag",
-    },
-    config = get_setup("treesitter"),
-    build = ":TSUpdate",
-  },
+return {
+  -- {
+  --   "jose-elias-alvarez/null-ls.nvim",
+  --   dependencies = {
+  --     "neovim/nvim-lspconfig",
+  --   },
+  --   config = get_setup("null_ls"),
+  -- },
 
   {
     "nvim-tree/nvim-web-devicons",
@@ -172,6 +57,8 @@ require("lazy").setup({
   {
     "EdenEast/nightfox.nvim",
     config = get_setup("theme"),
+    lazy = false,
+    priority = 1000,
   },
 
   --project management
@@ -217,14 +104,14 @@ require("lazy").setup({
   },
 
   --Markdown Previewer
-  {
-    "iamcco/markdown-preview.nvim",
-    build = "cd app && npm install",
-    init = function()
-      vim.g.mkdp_filetypes = { "markdown" }
-    end,
-    ft = { "markdown" },
-  },
+  -- {
+  --   "iamcco/markdown-preview.nvim",
+  --   build = "cd app && npm install",
+  --   init = function()
+  --     vim.g.mkdp_filetypes = { "markdown" }
+  --   end,
+  --   ft = { "markdown" },
+  -- },
 
   {
     -- Adds git related signs to the gutter, as well as utilities for managing changes
@@ -254,4 +141,4 @@ require("lazy").setup({
     "microsoft/python-type-stubs",
     cond = false,
   },
-})
+}

@@ -17,3 +17,9 @@ nightfox.setup({
 })
 
 vim.cmd("colorscheme nightfox")
+
+-- local everforest = require("everforest")
+
+-- everforest.setup({})
+
+-- vim.cmd("colorscheme everforest")
