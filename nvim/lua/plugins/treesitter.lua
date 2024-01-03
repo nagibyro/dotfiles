@@ -1,14 +1,26 @@
 return {
-
   {
     "nvim-treesitter/nvim-treesitter",
+    version = false,
     dependencies = {
-      "nvim-treesitter/nvim-treesitter-textobjects",
-      "nvim-treesitter/nvim-treesitter-context",
+      -- "nvim-treesitter/nvim-treesitter-textobjects",
+      -- "nvim-treesitter/nvim-treesitter-context",
       "windwp/nvim-ts-autotag",
     },
     build = ":TSUpdate",
+    config = function(_, opts)
+      -- Config function is required for treesitter because it's special see
+      -- https://github.com/folke/lazy.nvim/issues/1011#issuecomment-1695857124
+      --
+      -- TLDR lazy-nvim when you don't have a config function tries to find the
+      -- module setup function at the root of the module aka
+      -- nvim-treesitter.setup() However treesitter's setup function is in a
+      -- submodule "nvim-treesitter.configs" and this just fails silently
+      -- withou the config function. so we call that here.
+      require("nvim-treesitter.configs").setup(opts)
+    end,
     opts = {
+      highlight = { enable = true },
       rainbow = {
         enable = true,
         extended_mode = true, -- Also highlight non-bracket delimiters like html tags, boolean or table: lang -> boolean
@@ -69,8 +81,11 @@ return {
         "vue",
         "yaml",
       },
-      highlight = { enable = true },
     }
   },
 
+  -- Automatically add closing tags for HTML and JSX
+  {
+    "windwp/nvim-ts-autotag",
+  },
 }
