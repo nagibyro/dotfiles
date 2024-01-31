@@ -91,13 +91,7 @@ return {
   --debugger
   {
     "puremourning/vimspector",
-    cmd = {
-      "VimspectorInstall",
-      "VimspectorUpdate",
-      -- "vimspector#Launch()",
-      -- "vimspector#ToggleBreakpoint",
-      -- "vimspector#Continue",
-    },
+    event = "VeryLazy",
     config = function()
       require("setup/vimspector").setup()
     end,

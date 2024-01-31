@@ -1,6 +1,9 @@
 -- escape
 vim.keymap.set("i", "jk", "<esc>", { desc = "Exit insert mode. Alt for [ESC]" })
 
+-- keep copied value when pasting over text
+vim.keymap.set("x", "p", [["_dP]])
+
 -- Nvim Tree
 vim.keymap.set(
   "n",

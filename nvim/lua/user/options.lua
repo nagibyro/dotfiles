@@ -34,12 +34,10 @@ vim.o.visualbell = true                                 -- screen flash on error
 
 vim.o.smartcase = true                                  -- case searches with uppercase
 vim.bo.swapfile = false                                 -- dont use swap files
-vim.o.backup = false                                    -- dont make backup files
+vim.opt.backup = false                                    -- dont make backup files
 vim.o.incsearch = true                                  -- show match while typing
 opt.inccommand = "split"                                -- get a preview of replacements
 
---vim.wo.signcolumn = "auto:2-6"
---vim.wo.signcolumn = "no"
 vim.o.scrolloff = 3     -- start scrolling before cursor reaches an edge
 vim.o.sidescrolloff = 1 -- start scrolling before cursor reaches an edge
 

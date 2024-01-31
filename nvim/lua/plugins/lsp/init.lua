@@ -131,15 +131,17 @@ return {
           pyright = {
             disableLanguageServices = true,
             disableOrganizeImports = true,
+          },
+          python = {
             analysis = {
-              typeCheckingMode = "off",
+              typeCheckingMode = "standard",
               useLibraryCodeForTypes = false,
               autoSearchPaths = true,
               diagnosticMode = "openFilesOnly",
               autoImportCompletions = true,
               stubPath = vim.fn.stdpath("data") .. "/lazy/python-type-stubs",
-            },
-          },
+            }
+          }
         },
       })
       lspconfig.awk_ls.setup({})

@@ -121,7 +121,6 @@ function M.toggle_human_mode()
 end
 
 function M.setup()
-  vim.cmd [[packadd! vimspector]] --load vimspector
   debuggers()
 end
 

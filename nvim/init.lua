@@ -1,3 +1,6 @@
+local python_utils = require("python-utils")
+vim.g.python3_host_prog = python_utils.find_host_python()
+
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
 	vim.fn.system({
@@ -12,15 +15,16 @@ end
 vim.opt.rtp:prepend(lazypath)
 vim.g.mapleader = "," --lazy needs leader key before running setup
 
-require("options")
-require("mappings")
+require("user.options")
+require("user.mappings")
 require("lazy").setup("plugins")
--- require("plugins")
---require("run_python_test")
 
---python utils requires some of the plugins to be loaded first
-local python_utils = require("python-utils")
-vim.g.python3_host_prog = python_utils.find_host_python()
+vim.api.nvim_set_hl(0, 'MatchParen', {
+  bold=true,
+  fg="#f44336",
+  bg="Grey",
+  cterm="bold"
+})
 
 --fix terraform and hcl comment string
 vim.api.nvim_create_autocmd("FileType", {
