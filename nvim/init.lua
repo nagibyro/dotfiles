@@ -19,11 +19,10 @@ require("user.options")
 require("user.mappings")
 require("lazy").setup("plugins")
 
-vim.api.nvim_set_hl(0, 'MatchParen', {
-  bold=true,
-  fg="#f44336",
-  bg="Grey",
-  cterm="bold"
+vim.api.nvim_set_hl(0, "MatchParen", {
+	bold = true,
+	fg = "#f44336",
+	bg = "Grey",
 })
 
 --fix terraform and hcl comment string
