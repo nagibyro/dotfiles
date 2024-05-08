@@ -1,5 +1,12 @@
 local M = {}
 
+local function replace_slashes(path)
+  local path = vim.fn.substitute(path, '/', '.', 'g')
+  path = vim.fn.substitute(path, '\\', '.', 'g')
+  path = vim.fn.trim(path, '.', 1)
+
+  return path
+end
 
 function M.find_app_python_bin()
   if vim.env.VIRTUAL_ENV then
@@ -7,6 +14,31 @@ function M.find_app_python_bin()
   end
 
   return nil
+end
+
+function M.find_django_manage(filepath)
+end
+
+function M.get_import_path(filepath)
+  ---  test out this function by running lua in the command prompt
+  -- :lua vim.print(vim.inspect(require('python-utils').get_import_path(vim.fn.expand("~/projects/test/folder/path/test.py"))))
+  local path = vim.fn.fnamemodify(filepath, ':.:r')
+
+  local top_level_module = vim.fn.fnamemodify(filepath, ':h')
+
+  local recursive_check = 100
+
+  while vim.fn.filereadable(vim.fn.findfile('__init__.py', top_level_module)) ~= 0 and recursive_check > 0 do
+    if top_level_module == "." or top_level_module == "/" then
+      return replace_slashes(path)
+    end
+
+    top_level_module = vim.fn.fnamemodify(top_level_module, ':h')
+    recursive_check = recursive_check - 1
+  end
+
+  path = vim.fn.substitute(path, top_level_module, '', '')
+  return replace_slashes(path)
 end
 
 function M.find_app_python(workspace)
@@ -42,5 +74,6 @@ function M.find_host_python()
     return vim.fn.exepath("python3") or vim.fn.exepath("python") or "python"
   end
 end
+
 
 return M

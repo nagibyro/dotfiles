@@ -46,8 +46,8 @@ vim.bo.undofile = true                              --persistent undo
 
 opt.clipboard = "unnamedplus"                       -- use system clipboard see :h clipboard
 opt.completeopt = { "menu", "menuone", "noselect" } -- configure auto complete options
-opt.cursorline = false
-opt.cursorcolumn = false
+opt.cursorline = true
+opt.cursorcolumn = true
 opt.encoding = "utf-8"
 opt.foldenable = false
 opt.foldmethod = "indent"

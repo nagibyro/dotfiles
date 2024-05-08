@@ -26,9 +26,11 @@ alias vim="nvim"
 #git
 alias g="git"
 alias gs="git status"
+alias gb="git branch"
 alias lg="git log --graph --abbrev-commit --date=relative"
 alias glg="git log --graph --abbrev-commit --date=relative"
 alias gfa="git fetch --all -p"
+alias gup="git fetch --all -p && git pull origin"
 
 # terraform
 alias tf="terraform"

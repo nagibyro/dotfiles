@@ -4,6 +4,9 @@
 [core]
   editor = vim
 	excludesfile = /Users/bnagi/.gitignore
+  pager = delta
+[interactive]
+  diffFilter = delta --color-only
 [color]
   ui = auto
   status = auto
@@ -30,3 +33,17 @@
   abbrevCommit = true
 [push]
   default = current
+[init]
+  defaultBranch = main
+[merge]
+  conflictstyle = zdiff3
+[rebase]
+  autostash = true
+[help]
+  autocorrect = 10
+[diff]
+  algorithm = histogram
+[branch]
+  sort = committerdate
+[tag]
+  sort = taggerdate

@@ -30,6 +30,7 @@ return {
 				bash = { "shellcheck" },
 				sh = { "shellcheck" },
 				yaml = { "yamllint" },
+				markdown = { "markdownlint" },
 			}
 
 			local lint_augroup = vim.api.nvim_create_augroup("lint", { clear = true })
@@ -37,9 +38,13 @@ return {
 			vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost", "InsertLeave" }, {
 				group = lint_augroup,
 				callback = function()
-					require("lint").try_lint()
+					-- lint.try_lint()
 				end,
 			})
+
+      for linter, linter_list in ipairs(lint.linters_by_ft) do
+        table.insert(linter_list, "cspell")
+      end
 
 			vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
 				group = lint_augroup,
@@ -48,6 +53,8 @@ return {
 					local path = vim.fn.expand("%:p")
 
 					if string.match(path, "/.github/") then
+						-- TODO::make sure to only add actionlint once if we open multiple
+						-- yaml files
 						table.insert(lint.linters_by_ft.yaml, 1, "actionlint")
 					end
 				end,
@@ -64,13 +71,13 @@ return {
 		opts = {},
 		event = { "BufReadPre", "BufNewFile" },
 		config = function()
-			require("conform").setup({
+			local conform = require("conform")
+			conform.setup({
 				formatters_by_ft = {
 					lua = { "stylua" },
 					python = function(bufnr)
-						local conform = require("conform")
 						if conform.get_formatter_info("ruff_format", bufnr).available then
-							return { "ruff_format" }
+							return { "ruff_format", "ruff_fix" }
 						elseif conform.get_formatter_info("black", bufnr).available then
 							return { "black" }
 						else
@@ -88,16 +95,20 @@ return {
 					markdown = { "mdformat" },
 					["*"] = { "codespell" },
 				},
-				format_on_save = {
-					timeout_ms = 500,
-					lsp_fallback = true,
-				},
+				-- format_on_save = {
+				-- 	timeout_ms = 500,
+				-- 	lsp_fallback = true,
+				-- },
 				formatters = {
 					mdformat = {
 						args = { "--wrap", "119" },
 					},
 				},
 			})
+
+			vim.keymap.set("n", "<leader>c", function()
+				conform.format()
+			end, { desc = "Trigger formatting for current file" })
 		end,
 	},
 }

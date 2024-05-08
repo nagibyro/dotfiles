@@ -1,4 +1,5 @@
 local python_util = require("python-utils")
+local override    = require("plenary.lsp.override")
 
 --local client_capabilities = vim.lsp.protocol.make_client_capabilities()
 --client_capabilities.textDocument.completionItem.snippetSupport = true
@@ -17,6 +18,20 @@ local lsp_defaults = {
 		end, opts)
 		vim.keymap.set("n", "gd", function()
 			vim.lsp.buf.definition()
+		end, opts)
+		vim.keymap.set("n", "gv", function()
+      vim.cmd('vsplit')
+
+      vim.schedule(function()
+        vim.lsp.buf.definition()
+      end)
+		end, opts)
+		vim.keymap.set("n", "gh", function()
+      vim.cmd('split')
+
+      vim.schedule(function()
+        vim.lsp.buf.definition()
+      end)
 		end, opts)
 		vim.keymap.set("n", "gD", function()
 			vim.lsp.buf.declaration()
@@ -156,7 +171,19 @@ return {
 			"williamboman/mason-lspconfig.nvim",
 			"j-hui/fidget.nvim",
 			--{ "folke/neoconf.nvim", cmd = "Neoconf", config = false, dependencies = { "nvim-lspconfig" } },
-			{ "folke/neodev.nvim", opts = {} },
-		},
+			{ "folke/neodev.nvim", opts = {
+        override = function(_, opts)
+          local path = vim.api.nvim_buf_get_name(0)
+          if path then
+            local name = vim.fs.basename(path)
+            if name == ".nvim.lua" then
+              opts.enabled = true
+              opts.plugins = true
+            end
+          end
+        end,
+        }
+      },
+	  },
 	},
 }

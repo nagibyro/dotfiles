@@ -99,25 +99,25 @@ lspconfig.html.setup({
 })
 lspconfig.jsonls.setup({})
 lspconfig.jedi_language_server.setup({})
-lspconfig.pyright.setup({
-  on_init = function(client)
-    client.config.settings.python.pythonPath = python_util.find_app_python(client.config.root_dir)
-  end,
-  settings = {
-    pyright = {
-      disableLanguageServices = true,
-      disableOrganizeImports = true,
-      analysis = {
-        typeCheckingMode = "off",
-        useLibraryCodeForTypes = false,
-        autoSearchPaths = true,
-        diagnosticMode = "openFilesOnly",
-        autoImportCompletions = true,
-        stubPath = vim.fn.stdpath("data") .. "/lazy/python-type-stubs",
-      },
-    },
-  },
-})
+-- lspconfig.pyright.setup({
+--   on_init = function(client)
+--     client.config.settings.python.pythonPath = python_util.find_app_python(client.config.root_dir)
+--   end,
+--   settings = {
+--     pyright = {
+--       disableLanguageServices = true,
+--       disableOrganizeImports = true,
+--       analysis = {
+--         typeCheckingMode = "off",
+--         useLibraryCodeForTypes = false,
+--         autoSearchPaths = true,
+--         diagnosticMode = "openFilesOnly",
+--         autoImportCompletions = true,
+--         stubPath = vim.fn.stdpath("data") .. "/lazy/python-type-stubs",
+--       },
+--     },
+--   },
+-- })
 lspconfig.awk_ls.setup({})
 lspconfig.ansiblels.setup({})
 lspconfig.sqlls.setup({})

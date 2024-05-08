@@ -78,3 +78,13 @@ vim.keymap.set("n", "<leader>dS", "<cmd>call vimspector#Stop()<cr>")
 vim.keymap.set("n", "<leader>dR", "<cmd>call vimspector#Restart()<cr>")
 vim.keymap.set("n", "<leader>dx", "<cmd>VimspectorReset<cr>")
 vim.keymap.set("n", "<leader>dH", '<cmd>lua require("setup/vimspector").toggle_human_mode()<cr>')
+
+vim.keymap.set("n", "<leader>pd", function()
+  local current_file = vim.fn.expand("%")
+
+  local python_utils = require("python-utils")
+
+  local dot_notation = python_utils.get_import_path(current_file)
+
+  vim.notify(dot_notation, vim.log.levels.INFO, {title = "current python file dot"})
+end)
