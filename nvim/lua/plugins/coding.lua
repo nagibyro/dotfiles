@@ -18,6 +18,11 @@ return {
 		ft = { "just" },
 	},
 
+  {
+		"fladson/vim-kitty",
+		event = "VeryLazy",
+	},
+
 	{
 		"mfussenegger/nvim-lint",
 		event = { "BufReadPre", "BufNewFile" },
