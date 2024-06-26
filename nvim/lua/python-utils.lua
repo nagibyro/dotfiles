@@ -1,3 +1,4 @@
+local utils = require("utils")
 local M = {}
 
 local function replace_slashes(path)
@@ -73,6 +74,17 @@ function M.find_host_python()
   else
     return vim.fn.exepath("python3") or vim.fn.exepath("python") or "python"
   end
+end
+
+function M.venv_has(cmd)
+  if not vim.env.VIRTUAL_ENV then
+    return false
+  end
+
+
+  local cmd_path = vim.env.VIRTUAL_ENV .. "/bin/" .. cmd
+
+  return utils.file_exists(cmd_path)
 end
 
 

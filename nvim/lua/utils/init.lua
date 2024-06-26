@@ -14,4 +14,9 @@ function M.info(msg, name)
   vim.notify(msg, vim.log.levels.INFO, { title = name })
 end
 
+function M.file_exists(path)
+  local stat = vim.loop.fs_stat(path)
+  return stat and true or false
+end
+
 return M

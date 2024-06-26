@@ -1,3 +1,4 @@
+local py_utils = require("python-utils")
 return {
 	{
 		-- parenthesis highlighting
@@ -30,7 +31,7 @@ return {
 			local lint = require("lint")
 
 			lint.linters_by_ft = {
-				python = { "pylint", "mypy" },
+				python = { "mypy" },
 				htmldjango = { "djlint" },
 				bash = { "shellcheck" },
 				sh = { "shellcheck" },
@@ -38,18 +39,34 @@ return {
 				markdown = { "markdownlint" },
 			}
 
+      lint.linters.markdownlint = vim.tbl_deep_extend("force", lint.linters.markdownlint, {
+        args = {
+          "--config",
+          "~/.markdownlint.json"
+        }
+      })
+
 			local lint_augroup = vim.api.nvim_create_augroup("lint", { clear = true })
 
 			vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost", "InsertLeave" }, {
 				group = lint_augroup,
 				callback = function()
-					-- lint.try_lint()
+					lint.try_lint()
 				end,
 			})
 
-      for linter, linter_list in ipairs(lint.linters_by_ft) do
-        table.insert(linter_list, "cspell")
-      end
+      -- Add codespell linting for all file types
+			for _, linter_list in pairs(lint.linters_by_ft) do
+				table.insert(linter_list, "codespell")
+			end
+
+			if py_utils.venv_has("ruff") then
+				table.insert(lint.linters_by_ft.python, "ruff")
+			end
+
+			if py_utils.venv_has("pylint") then
+				table.insert(lint.linters_by_ft.python, "pylint")
+			end
 
 			vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
 				group = lint_augroup,
@@ -58,9 +75,37 @@ return {
 					local path = vim.fn.expand("%:p")
 
 					if string.match(path, "/.github/") then
-						-- TODO::make sure to only add actionlint once if we open multiple
-						-- yaml files
+						for key, value in pairs(lint.linters_by_ft.yaml) do
+							if value == "actionlint" then
+								return
+							elseif value == "yamllint" then
+								table.remove(lint.linters_by_ft.yaml, key)
+							end
+						end
 						table.insert(lint.linters_by_ft.yaml, 1, "actionlint")
+					else
+						local found_action_lint = false
+						local action_lint_key = nil
+
+						local found_yaml_lint = false
+
+						for key, value in pairs(lint.linters_by_ft.yaml) do
+							if value == "actionlint" then
+								found_action_lint = true
+								action_lint_key = key
+							end
+							if value == "yamllint" then
+								found_yaml_lint = true
+							end
+						end
+
+						if found_action_lint and action_lint_key then
+							table.remove(lint.linters_by_ft.yaml, action_lint_key)
+						end
+
+						if not found_yaml_lint then
+							table.insert(lint.linters_by_ft.yaml, "yamllint")
+						end
 					end
 				end,
 			})
@@ -98,7 +143,6 @@ return {
 					hcl = { "terraform_fmt" },
 					yaml = { "yamlfmt" },
 					markdown = { "mdformat" },
-					["*"] = { "codespell" },
 				},
 				-- format_on_save = {
 				-- 	timeout_ms = 500,

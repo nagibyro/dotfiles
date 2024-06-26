@@ -6,6 +6,7 @@ require("luasnip.loaders.from_vscode").lazy_load()
 
 local select_opts = { behavior = cmp.SelectBehavior.Select }
 
+
 cmp.setup({
   mapping = cmp.mapping.preset.insert({
     ["<C-n>"] = cmp.mapping.select_next_item(select_opts),
@@ -17,19 +18,8 @@ cmp.setup({
       behavior = cmp.ConfirmBehavior.Insert,
       select = true,
     }),
-    ["<c-space>"] = cmp.mapping({
+    ["<C-s>"] = cmp.mapping({
       i = cmp.mapping.complete(),
-      c = function(
-        _ --[[fallback]]
-      )
-        if cmp.visible() then
-          if not cmp.confirm({ select = true }) then
-            return
-          end
-        else
-          cmp.complete()
-        end
-      end,
     }),
   }),
   sources = {
