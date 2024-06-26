@@ -3,11 +3,12 @@ I really like the [Berkeley Mono Typeface](https://berkeleygraphics.com/typeface
 this readme is a brain dump on how download, patch (to add nerdfont icons ect...), and install
 Berekley Mono.
 
-# Steps
+## Steps
+
 1. Login to [https://berkeleygraphics.com/typefaces/berkeley-mono/](https://berkeleygraphics.com/typefaces/berkeley-mono/)
 and download a copy of font.
 2. create an input dir and output dir for the fonts
-    - recommneded `mkdir -p ~/opt/berkeley-mono/original && mkdir -p
+    - recommended `mkdir -p ~/opt/berkeley-mono/original && mkdir -p
       ~/opt/berkeley-mono/patched`
 3. Run [Nerd Font Patcher Script](https://github.com/ryanoasis/nerd-fonts/wiki/ScriptOptions)
     - recommended use docker
