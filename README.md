@@ -42,3 +42,10 @@ TBD
 
 - To install run `brew bundle` from dotfiles directory
 
+
+### Git
+Git configuration loads the username and email to use for a git directory based
+on the path of the project.
+
+- `~/projects/work` -> Load work email
+- `~/projects/personal` -> Loads personal email
