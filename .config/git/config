@@ -1,7 +1,9 @@
-[includeIf "gitdir:~/projects/work/"]
+[user]
+  name = "Byron Nagi"
+  email = byro@fastmail.fm
+
+[includeIf "gitdir:~/projects/work/**"]
   path = ~/.config/git/config-work
-[includeIf "gitdir:~/projects/personal/"]
-  path = ~/.config/git/config-personal
 
 [core]
   editor = vim
