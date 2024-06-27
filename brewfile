@@ -18,7 +18,7 @@ brew 'redis', restart_service: true
 brew 'nginx'
 
 ## Editors
-brew 'vim'
+brew 'neovim'
 
 ## Terminal
 brew 'tmux'
@@ -44,11 +44,5 @@ brew 'tflint'
 brew 'tfenv'
 brew 'circleci'
 brew 'awscli'
+brew 'stow'
 
-## Apps to install
-# - iterm2
-# - Firefox-developer-edition
-# - TablePlus
-# - VSCode
-# - Docker
-# -

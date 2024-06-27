@@ -1,3 +1,4 @@
+#!/bin/bash
 #Put your fun stuff here.
 export LS_OPTIONS='--color=auto'
 export CLICOLOR=1
@@ -5,7 +6,6 @@ export CLICOLOR=1
 #navigation
 alias b='cd ..'
 alias bb='cd ../..'
-alias bbb='cd ../../..'
 alias home='cd ~'
 
 #listing
@@ -40,6 +40,11 @@ alias env="env | sort"
 
 alias uuidgen='uuidgen | tr "[:upper:]" "[:lower:]"'
 
-export EDITOR=/usr/bin/nvim
-#PS1="\[\e[1;37m\][\u@\h]\[\e[1;35m\] \w: \[\e[0;36m\]"
-#
+export EDITOR=$(which nvim)
+export PROMPT_DIRTRIM=3
+export PS1='\[\033[01;32m\][\w\[\033[00m\]\[\033[01;34m\]`__git_ps1 " (%s)"`\033[01;32m\]]\[\033[00m\]\$ '
+
+source $HOME/.config/git/git-completion.bash
+source $HOME/.config/git/git-prompt.sh
+source $HOME/.config/terraform/tf-prompt.sh
+

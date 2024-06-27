@@ -1,18 +1,32 @@
-dotfiles
+# Dotfiles
 ========
 
-holds the dotfiles and other configs for unix like operating systems.
+Holds the dotfiles and other configs for unix like operating systems.
+
+## GNU Stow
+These dotfiles are meant to be managed via [gnu stow](https://www.gnu.org/software/stow/stow.html)
+where any file or folder not in the `.stow-local-ignore` file is symlinked to `$HOME`. To install
+the dotfiles simply run:
+
+```sh
+stow .
+```
+
+Install Stow either via linux package manager or homebrew.
 
 ### Bash
-1. Copy `bashrc-sample` & `bash_profile-sample` to `bashrc` and `bash_profile`
-2. Symlink both files to home directory `ln -s $HOME/dotfiles/shell/bashrc $HOME/.bashrc`
+All bash configs are stored in `.bashrc.d`. `.bashrc` sources all files ending in `*.sh` in that folder.
 
-The sample bashrc includes the git-completion.bash script and a few others
+For any private config that should not be committed and shared put them in a
+file with the word `-private-` in it this way it'll be ignored in the dotfiles
+dir
+
+example `11-private-work-setup.sh` will be ignored
 
 ### Neovim
 
-1. Symlink to home config directory `ln -s $HOME/dotfiles/nvim/ $HOME/.config/nvim`
-2. Create python venv:
+1. Create python venv:
+
 ```sh
 mkdir ${HOME}/venv
 python -m venv ${HOME}/venv/neovim
@@ -20,36 +34,11 @@ cd ${HOME}/venv/neovim && source ./bin/activate
 pip install neovim
 deactivate
 ```
-3. Install System Dependencies
+
+2. Install System Dependencies
 TBD
 
-
-### Git
-- Run `./install.sh git`
-
-### Macos
-- Run `./install.sh macos`
-
 ### homebrew
+
 - To install run `brew bundle` from dotfiles directory
-
-### Scripts
-- Copy or symlink scripts to `~/bin` and add `~/bin` to `PATH`
-
-### psql
-- `./insall.sh psql`
-
-### macos
-Set preferred macos settings
-
-**Note**: may need to restart or relaunch apps like finder to see results.
-
-- `./install.sh macos`
-
-### sway
-Set config for [sway window manager](https://wiki.archlinux.org/title/Sway)
-
-**Note**: its pretty specific for arch linux laptop assumes using [TLP](https://wiki.archlinux.org/title/Sway) for power management
-
-- `./install.sh sway`
 

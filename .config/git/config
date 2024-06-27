@@ -1,0 +1,49 @@
+[includeIf "gitdir:~/projects/work/"]
+  path = ~/.config/git/config-work
+[includeIf "gitdir:~/projects/personal/"]
+  path = ~/.config/git/config-personal
+
+[core]
+  editor = vim
+	pager = delta
+[color]
+  ui = auto
+  status = auto
+[color "branch"]
+  current = yellow reverse
+  local = yellow
+  remote = magenta
+[color "diff"]
+  meta = yellow bold
+  frag = magenta bold
+  old = red reverse
+  new = green reverse
+  whitespace = white reverse
+[color "status"]
+  added = green
+  changed = yellow
+  untracked = red
+  branch = magenta
+  nobranch = red
+[format]
+  pretty = format:"%C(bold red)%h%C(reset) -%C(cyan)%d%C(reset) %s %C(yellow)(%cr) %C(green)<%an>%C(reset)"
+[log]
+  date = short
+  abbrevCommit = false
+[push]
+  default = current
+[init]
+	defaultBranch = main
+[branch]
+	sort = -committerdate
+[tag]
+	sort = -taggerdate
+[diff]
+	algorithm = histogram
+[alias]
+  # list all aliases
+  la = "!git config -l | grep alias | cut -c 7-"
+  cob = checkout -b
+  churn = "!f() { git log --all -M -C --name-only --format='format:' \"$@\" | sort | grep -v '^$' | uniq -c | sort | awk 'BEGIN {print \"count\tfile\"} {print $1 \"\t\" $2}' | sort -g; }; f"
+  pr = "!f() { git fetch -fu ${2:-origin} refs/pull/$1/head:pr/$1 && git checkout pr/$1; }; f"
+  pr-clean = "!git for-each-ref refs/heads/pr/* --format='%(refname)' | while read ref ; do branch=${ref#refs/heads/} ; git branch -D $branch ; done"

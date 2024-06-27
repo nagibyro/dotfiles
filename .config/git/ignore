@@ -16,8 +16,15 @@ bash_profile
 # Editor files
 .idea
 /.vscode/
+/.vim/
 .swp
 .netrwhist
 
 # Python
-/__pycache__/
+__pycache__/
+
+#neovim
+.vimspector.json
+.rgignore
+
+.nvim.lua

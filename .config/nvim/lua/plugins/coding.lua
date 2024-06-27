@@ -42,7 +42,7 @@ return {
       lint.linters.markdownlint = vim.tbl_deep_extend("force", lint.linters.markdownlint, {
         args = {
           "--config",
-          "~/.markdownlint.json"
+          "~/.config/markdownlint/markdownlint.json"
         }
       })
 
