@@ -40,11 +40,13 @@ alias env="env | sort"
 
 alias uuidgen='uuidgen | tr "[:upper:]" "[:lower:]"'
 
+alias ts="$HOME/.local/bin/tmux-sessionizer.sh"
+
 export EDITOR=$(which nvim)
 export PROMPT_DIRTRIM=3
-export PS1='\[\033[01;32m\][\w\[\033[00m\]\[\033[01;34m\]`__git_ps1 " (%s)"`\033[01;32m\]]\[\033[00m\]\$ '
+#export PS1='\[\033[01;32m\][\w\[\033[00m\]\[\033[01;34m\]`__git_ps1 " (%s)"`\033[01;32m\]]\[\033[00m\]\$ '
 
-source $HOME/.config/git/git-completion.bash
-source $HOME/.config/git/git-prompt.sh
-source $HOME/.config/terraform/tf-prompt.sh
+source "$HOME"/.config/git/git-completion.bash
+source "$HOME"/.config/git/git-prompt.sh
+source "$HOME"/.config/terraform/tf-prompt.sh
 

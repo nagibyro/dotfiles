@@ -144,10 +144,10 @@ return {
 					yaml = { "yamlfmt" },
 					markdown = { "mdformat" },
 				},
-				-- format_on_save = {
-				-- 	timeout_ms = 500,
-				-- 	lsp_fallback = true,
-				-- },
+				format_on_save = {
+					timeout_ms = 500,
+					lsp_fallback = true,
+				},
 				formatters = {
 					mdformat = {
 						args = { "--wrap", "119" },

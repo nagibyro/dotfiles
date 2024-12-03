@@ -76,7 +76,7 @@ return {
 	{
 		-- LSP Progress Bar
 		"j-hui/fidget.nvim",
-		tag = "legacy", -- Author is rewriting it remove once rewrite is complete
+		opts = {},
 	},
 
 	{
@@ -99,16 +99,35 @@ return {
 			},
 		},
 		config = function(_, opts)
-      local lspconfig = require("lspconfig")
-      lspconfig.util.default_config = vim.tbl_extend("force", lspconfig.util.default_config, lsp_defaults)
+			local lspconfig = require("lspconfig")
+			lspconfig.util.default_config = vim.tbl_extend("force", lspconfig.util.default_config, lsp_defaults)
 			lspconfig.lua_ls.setup({
+				on_init = function(client)
+          -- On init we check if we are in a lua project based on if there is a
+          -- luarc.json or luarc.jsonc file if not then we assume we are using
+          -- lua in neovim config and we set lsp settings to include the vim
+          -- environment for completion and diagnostics ect...
+					if client.workspace_folders then
+						if vim.uv.fs_stat(path .. "/.luarc.json") or vim.uv.fs_stat(path .. "/.luarc.jsonc") then
+							return
+						end
+					end
+
+					client.config.settings.Lua = vim.tbl_deep_extend("force", client.config.settings.Lua, {
+						runtime = {
+							version = "LuaJIT",
+						},
+						workspace = {
+							checkThirdParty = false,
+							library = {
+								vim.env.VIMRUNTIME,
+							},
+						},
+					})
+				end,
 				settings = {
 					Lua = {
 						telemetry = { enable = false },
-						workspace = { checkThirdParty = false },
-						completion = {
-							callSnippet = "Replace",
-						},
 					},
 				},
 			})
@@ -136,31 +155,41 @@ return {
 				filetypes = { "html", "htmldjango" },
 			})
 			lspconfig.jsonls.setup({})
-			lspconfig.jedi_language_server.setup({})
-			-- lspconfig.pyright.setup({
-			--   on_init = function(client)
-			--     client.config.settings.python.pythonPath = python_util.find_app_python(client.config.root_dir)
-			--   end,
-			--   settings = {
-			--     pyright = {
-			--       disableLanguageServices = true,
-			--       disableOrganizeImports = true,
-			--     },
-			--     python = {
-			--       analysis = {
-			--         typeCheckingMode = "standard",
-			--         useLibraryCodeForTypes = false,
-			--         autoSearchPaths = true,
-			--         diagnosticMode = "openFilesOnly",
-			--         autoImportCompletions = true,
-			--         stubPath = vim.fn.stdpath("data") .. "/lazy/python-type-stubs",
-			--       }
-			--     }
-			--   },
-			-- })
+			-- lspconfig.jedi_language_server.setup({})
+			lspconfig.pyright.setup({
+				on_init = function(client)
+					client.config.settings.python.pythonPath = python_util.find_app_python(client.config.root_dir)
+
+					if python_util.venv_has("mypy") then
+						client.config.settings.python.analysis.typeCheckingMode = "off"
+						client.config.settings.python.analysis.useLibraryCodeForTypes = false
+					end
+
+					if python_util.venv_has("ruff") or python_util.venv_has("isort") then
+						client.config.settings.pyright.disableOrganizeImports = true
+					end
+				end,
+				settings = {
+					pyright = {
+						disableOrganizeImports = false,
+					},
+					python = {
+						analysis = {
+							autoImportCompletions = true,
+							autoSearchPaths = true,
+							diagnosticMode = "workspace", -- "openFilesOnly"
+							-- typeCheckingMode = "standard",
+							useLibraryCodeForTypes = true,
+							-- stubPath = vim.fn.stdpath("data") .. "/lazy/python-type-stubs",
+						},
+					},
+				},
+			})
 			lspconfig.awk_ls.setup({})
 			lspconfig.ansiblels.setup({})
-			lspconfig.sqlls.setup({})
+			lspconfig.sqlls.setup({
+				filetype = { "sql" },
+			})
 			lspconfig.esbonio.setup({})
 			lspconfig.svelte.setup({})
 			lspconfig.terraformls.setup({})

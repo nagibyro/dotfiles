@@ -20,6 +20,9 @@ return {
       require("nvim-treesitter.configs").setup(opts)
     end,
     opts = {
+      playground = {
+        enable = true,
+      },
       highlight = { enable = true },
       rainbow = {
         enable = true,
@@ -97,5 +100,9 @@ return {
   -- Automatically add closing tags for HTML and JSX
   {
     "windwp/nvim-ts-autotag",
+  },
+
+  {
+    "nvim-treesitter/playground",
   },
 }
