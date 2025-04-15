@@ -103,15 +103,15 @@ return {
 			lspconfig.util.default_config = vim.tbl_extend("force", lspconfig.util.default_config, lsp_defaults)
 			lspconfig.lua_ls.setup({
 				on_init = function(client)
-          -- On init we check if we are in a lua project based on if there is a
-          -- luarc.json or luarc.jsonc file if not then we assume we are using
-          -- lua in neovim config and we set lsp settings to include the vim
-          -- environment for completion and diagnostics ect...
-					if client.workspace_folders then
-						if vim.uv.fs_stat(path .. "/.luarc.json") or vim.uv.fs_stat(path .. "/.luarc.jsonc") then
-							return
-						end
-					end
+					-- On init we check if we are in a lua project based on if there is a
+					-- luarc.json or luarc.jsonc file if not then we assume we are using
+					-- lua in neovim config and we set lsp settings to include the vim
+					-- environment for completion and diagnostics ect...
+					-- if client.workspace_folders then
+					-- 	if vim.uv.fs_stat(path .. "/.luarc.json") or vim.uv.fs_stat(path .. "/.luarc.jsonc") then
+					-- 		return
+					-- 	end
+					-- end
 
 					client.config.settings.Lua = vim.tbl_deep_extend("force", client.config.settings.Lua, {
 						runtime = {
@@ -146,7 +146,7 @@ return {
 					keyOrdering = false,
 				},
 			})
-			lspconfig.tsserver.setup({})
+			lspconfig.ts_ls.setup({})
 			lspconfig.bashls.setup({})
 			lspconfig.eslint.setup({})
 			lspconfig.cssls.setup({})
@@ -175,6 +175,7 @@ return {
 					},
 					python = {
 						analysis = {
+							python_path = python_util.find_app_python_bin() .. "/python",
 							autoImportCompletions = true,
 							autoSearchPaths = true,
 							diagnosticMode = "workspace", -- "openFilesOnly"
@@ -199,21 +200,6 @@ return {
 			"williamboman/mason-lspconfig.nvim",
 			"j-hui/fidget.nvim",
 			--{ "folke/neoconf.nvim", cmd = "Neoconf", config = false, dependencies = { "nvim-lspconfig" } },
-			{
-				"folke/neodev.nvim",
-				opts = {
-					override = function(_, opts)
-						local path = vim.api.nvim_buf_get_name(0)
-						if path then
-							local name = vim.fs.basename(path)
-							if name == ".nvim.lua" then
-								opts.enabled = true
-								opts.plugins = true
-							end
-						end
-					end,
-				},
-			},
 		},
 	},
 }

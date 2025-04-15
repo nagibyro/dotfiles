@@ -42,7 +42,9 @@ else
   selected=$(find ~/projects/work ~/projects/personal ~/ -mindepth 1 -maxdepth 1 -type d | fzf)
 fi
 
+
 if [[ -z $selected ]]; then
+  tmux display-message "No project selected."
   exit 0
 fi
 
@@ -63,9 +65,12 @@ if [[ $is_new -eq 0 ]]; then
   workspace_setup "$selected_name" "$selected"
 fi
 
+
 if [[ -z $TMUX ]]; then
   tmux attach-session -t "$selected_name":1
 else
   tmux switch-client -t "$selected_name":1
+  tmux display-message "Switched to session: $selected_name"
 fi
+
 

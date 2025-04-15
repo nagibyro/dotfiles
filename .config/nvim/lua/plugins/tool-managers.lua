@@ -24,7 +24,7 @@ return {
 					"ansiblels",
 					"yamlls",
 					"rust_analyzer",
-					"tsserver",
+					"ts_ls",
 					"bashls",
 					"eslint",
 					"cssls",
@@ -38,7 +38,7 @@ return {
 					"svelte",
 					"terraformls",
 					"emmet_language_server",
-					"ruff_lsp",
+					"ruff",
 				},
 			})
 		end,
@@ -50,6 +50,6 @@ return {
 	{
 		"mrcjkb/rustaceanvim",
 		ft = "rust",
-    version = '^4',
+		version = "^4",
 	},
 }
