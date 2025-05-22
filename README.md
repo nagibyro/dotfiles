@@ -49,3 +49,16 @@ on the path of the project.
 
 - `~/projects/work` -> Load work email
 - `~/projects/personal` -> Loads personal email
+
+## 1Password Secrets
+Some configuration like for AI Plugins need access to secrets. I want those to
+be stored in 1Password instead of env if possible. Therefore make sure to setup
+a [1Password Service Account](https://developer.1password.com/docs/service-accounts/)
+and add
+
+```sh
+export OP_ACCOUNT=
+export OP_SERVICE_ACCOUNT_TOKEN
+```
+
+to a `11-private-{name}.sh` file in `.bashrc.d` directory
