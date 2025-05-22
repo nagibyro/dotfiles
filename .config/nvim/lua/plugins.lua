@@ -135,26 +135,55 @@ return {
 		priority = 1000,
 	},
 
-	--project management
-	{
-		"ahmedkhalf/project.nvim",
-		config = get_setup("project"),
-	},
-
 	-- Telescope
 	{
 		"nvim-telescope/telescope.nvim",
-		config = get_setup("telescope"),
+		event = "VimEnter",
+		config = function()
+			local telescope = require("telescope")
+			local telescopeConfig = require("telescope.config")
+
+			-- Clone the default Telescope configuration
+			local vimgrep_arguments = { unpack(telescopeConfig.values.vimgrep_arguments) }
+
+			-- I want to search in hidden/dot files.
+			table.insert(vimgrep_arguments, "--hidden")
+			-- I don't want to search in the `.git` directory.
+			table.insert(vimgrep_arguments, "--glob")
+			table.insert(vimgrep_arguments, "!**/.git/*")
+
+			telescope.setup({
+				defaults = {
+					vimgrep_arguments = vimgrep_arguments,
+				},
+				pickers = {
+					find_files = {
+						find_command = { "rg", "--files", "--hidden", "--glob", "!**/.git/*" },
+					},
+				},
+				extensions = {
+					fzf = {
+						fuzzy = true,
+						override_generic_sorter = true,
+						override_file_sorter = true,
+						case_mode = "smart_case",
+					},
+				},
+			})
+			pcall(require("telescope").load_extension, "fzf")
+		end,
+		tag = "0.1.8",
 		dependencies = {
 			{ "nvim-lua/plenary.nvim" },
-			{ "BurntSushi/ripgrep" },
 			{
 				"nvim-telescope/telescope-fzf-native.nvim",
-				build = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build",
+				build = "make",
+				cond = function()
+					return vim.fn.executable("make") == 1
+				end,
 			},
 		},
 	},
-
 	{
 		"folke/trouble.nvim",
 		dependencies = "nvim-tree/nvim-web-devicons",

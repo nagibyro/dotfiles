@@ -156,36 +156,36 @@ return {
 			})
 			lspconfig.jsonls.setup({})
 			-- lspconfig.jedi_language_server.setup({})
-			lspconfig.pyright.setup({
-				on_init = function(client)
-					client.config.settings.python.pythonPath = python_util.find_app_python(client.config.root_dir)
+			-- lspconfig.pyright.setup({
+			-- 	on_init = function(client)
+			-- 		client.config.settings.python.pythonPath = python_util.find_app_python(client.config.root_dir)
 
-					if python_util.venv_has("mypy") then
-						client.config.settings.python.analysis.typeCheckingMode = "off"
-						client.config.settings.python.analysis.useLibraryCodeForTypes = false
-					end
+			-- 		if python_util.venv_has("mypy") then
+			-- 			client.config.settings.python.analysis.typeCheckingMode = "off"
+			-- 			client.config.settings.python.analysis.useLibraryCodeForTypes = false
+			-- 		end
 
-					if python_util.venv_has("ruff") or python_util.venv_has("isort") then
-						client.config.settings.pyright.disableOrganizeImports = true
-					end
-				end,
-				settings = {
-					pyright = {
-						disableOrganizeImports = false,
-					},
-					python = {
-						analysis = {
-							python_path = python_util.find_app_python_simple(),
-							autoImportCompletions = true,
-							autoSearchPaths = true,
-							diagnosticMode = "workspace", -- "openFilesOnly"
-							-- typeCheckingMode = "standard",
-							useLibraryCodeForTypes = true,
-							-- stubPath = vim.fn.stdpath("data") .. "/lazy/python-type-stubs",
-						},
-					},
-				},
-			})
+			-- 		if python_util.venv_has("ruff") or python_util.venv_has("isort") then
+			-- 			client.config.settings.pyright.disableOrganizeImports = true
+			-- 		end
+			-- 	end,
+			-- 	settings = {
+			-- 		pyright = {
+			-- 			disableOrganizeImports = false,
+			-- 		},
+			-- 		python = {
+			-- 			analysis = {
+			-- 				python_path = python_util.find_app_python_simple(),
+			-- 				autoImportCompletions = true,
+			-- 				autoSearchPaths = true,
+			-- 				diagnosticMode = "workspace", -- "openFilesOnly"
+			-- 				-- typeCheckingMode = "standard",
+			-- 				useLibraryCodeForTypes = true,
+			-- 				-- stubPath = vim.fn.stdpath("data") .. "/lazy/python-type-stubs",
+			-- 			},
+			-- 		},
+			-- 	},
+			-- })
 			lspconfig.awk_ls.setup({})
 			lspconfig.ansiblels.setup({})
 			lspconfig.sqlls.setup({
