@@ -175,7 +175,7 @@ return {
 					},
 					python = {
 						analysis = {
-							python_path = python_util.find_app_python_bin() .. "/python",
+							python_path = python_util.find_app_python_simple(),
 							autoImportCompletions = true,
 							autoSearchPaths = true,
 							diagnosticMode = "workspace", -- "openFilesOnly"

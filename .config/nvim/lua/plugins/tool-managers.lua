@@ -39,6 +39,7 @@ return {
 					"terraformls",
 					"emmet_language_server",
 					"ruff",
+					"elixirls",
 				},
 			})
 		end,
