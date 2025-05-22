@@ -18,6 +18,11 @@ return {
 		config = function()
 			local mason_lsp = require("mason-lspconfig")
 			mason_lsp.setup({
+				automatic_enable = {
+					exclude = {
+						"pyright",
+					},
+				},
 				ensure_installed = {
 					"lua_ls",
 					"awk_ls",

@@ -5,71 +5,35 @@ local override = require("plenary.lsp.override")
 --client_capabilities.textDocument.completionItem.snippetSupport = true
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
+vim.api.nvim_create_autocmd("LspAttach", {
+	group = vim.api.nvim_create_augroup("lsp-attach", { clear = true }),
+	callback = function(event)
+		local map = function(keys, func, desc, mode)
+			mode = mode or "n"
+			vim.keymap.set(mode, keys, func, { buffer = event.buf, desc = "LSP: " .. desc })
+		end
+
+		map("gd", require("telescope.builtin").lsp_definitions, "[G]oto [D]efintion")
+		map("gD", vim.lsp.buf.declaration, "[G]oto [D]eclaration")
+		map("gi", require("telescope.builtin").lsp_implementations, "[G]oto [I]mplemnations")
+		map("gr", require("telescope.builtin").lsp_references, "[G]oto [R]eferences")
+		map("gv", function()
+			vim.cmd("vsplit")
+
+			vim.schedule(function()
+				require("telescope.builtin").lsp_definitions()
+			end)
+		end, "[G]o [V]ertial")
+		map("<C-k>", vim.lsp.buf.signature_help, "Signature Help")
+		map("<leader>cr", vim.lsp.buf.rename, "[C]ode [R]ename")
+	end,
+})
+
 local lsp_defaults = {
 	flags = {
 		debounce_text_changes = 150,
 	},
 	capabilities = capabilities,
-	on_attach = function(client, bufnr)
-		local opts = { buffer = bufnr, remap = false }
-
-		vim.keymap.set("n", "K", function()
-			vim.lsp.buf.hover()
-		end, opts)
-		vim.keymap.set("n", "gd", function()
-			vim.lsp.buf.definition()
-		end, opts)
-		vim.keymap.set("n", "gv", function()
-			vim.cmd("vsplit")
-
-			vim.schedule(function()
-				vim.lsp.buf.definition()
-			end)
-		end, opts)
-		vim.keymap.set("n", "gh", function()
-			vim.cmd("split")
-
-			vim.schedule(function()
-				vim.lsp.buf.definition()
-			end)
-		end, opts)
-		vim.keymap.set("n", "gD", function()
-			vim.lsp.buf.declaration()
-		end, opts)
-		vim.keymap.set("n", "gi", function()
-			vim.lsp.buf.implementation()
-		end, opts)
-		vim.keymap.set("n", "go", function()
-			vim.lsp.buf.type_definition()
-		end, opts)
-		vim.keymap.set("n", "gr", function()
-			require("telescope.builtin").lsp_references()
-		end, opts)
-		vim.keymap.set("n", "<C-k>", function()
-			vim.lsp.buf.signature_help()
-		end, opts)
-		vim.keymap.set("n", "<leader>cr", function()
-			vim.lsp.buf.rename()
-		end, opts)
-		vim.keymap.set("n", "<C-l>", function()
-			vim.lsp.buf.code_action()
-		end, opts)
-		vim.keymap.set("n", "<leader>cf", function()
-			vim.lsp.buf.format()
-		end, opts)
-		vim.keymap.set("x", "<F4>", function()
-			vim.lsp.buf.range_code_action()
-		end, opts)
-		vim.keymap.set("n", "gl", function()
-			vim.diagnostic.open_float()
-		end, opts)
-		vim.keymap.set("n", "[d", function()
-			vim.diagnostic.goto_prev()
-		end, opts)
-		vim.keymap.set("n", "]d", function()
-			vim.diagnostic.goto_next()
-		end, opts)
-	end,
 }
 
 return {
