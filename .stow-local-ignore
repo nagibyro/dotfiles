@@ -6,5 +6,5 @@ idea
 brewfile
 Brewfile.lock.json
 .DS_Store
-
+.rgignore
 

@@ -3,15 +3,15 @@
 # We need this because if we got fzf from debian or ubuntu the offical package
 # version is so old it doesn't support terminal integration. Can probably
 # remove eventually.
+#
+# Make sure this comes after PATH is set
 
 MIN_VERSION="0.48.0"
 
 current_version=$(fzf --version 2>/dev/null | awk '{print $1}')
-echo "$current_version"
 
 if [[ -z "$current_version" ]]; then
   echo "fzf not found or version could not be determined"
-  #exit 1
 fi
 
 version_ge() {
