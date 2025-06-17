@@ -37,6 +37,7 @@ return {
 				sh = { "shellcheck" },
 				yaml = { "yamllint" },
 				markdown = { "markdownlint" },
+        ghaction = { "actionlint" }
 			}
 
 			lint.linters.markdownlint = vim.tbl_deep_extend("force", lint.linters.markdownlint, {
@@ -70,48 +71,6 @@ return {
 			-- if py_utils.venv_has("pylint") then
 			-- 	table.insert(lint.linters_by_ft.python, "pylint")
 			-- end
-
-			vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
-				group = lint_augroup,
-				pattern = { "*.yaml", "*.yml" },
-				callback = function()
-					local path = vim.fn.expand("%:p")
-
-					if string.match(path, "/.github/") then
-						for key, value in pairs(lint.linters_by_ft.yaml) do
-							if value == "actionlint" then
-								return
-							elseif value == "yamllint" then
-								table.remove(lint.linters_by_ft.yaml, key)
-							end
-						end
-						table.insert(lint.linters_by_ft.yaml, 1, "actionlint")
-					else
-						local found_action_lint = false
-						local action_lint_key = nil
-
-						local found_yaml_lint = false
-
-						for key, value in pairs(lint.linters_by_ft.yaml) do
-							if value == "actionlint" then
-								found_action_lint = true
-								action_lint_key = key
-							end
-							if value == "yamllint" then
-								found_yaml_lint = true
-							end
-						end
-
-						if found_action_lint and action_lint_key then
-							table.remove(lint.linters_by_ft.yaml, action_lint_key)
-						end
-
-						if not found_yaml_lint then
-							table.insert(lint.linters_by_ft.yaml, "yamllint")
-						end
-					end
-				end,
-			})
 
 			vim.keymap.set("n", "<leader>l", function()
 				lint.try_lint()
