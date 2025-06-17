@@ -16,3 +16,14 @@ vim.filetype.add({
 		["%.env%.[%w_.-]+"] = "dotenv", -- Match filenames like ".env.example", ".env.local" etc...
 	},
 })
+
+vim.filetype.add({
+	extension = {
+		ghaction = "ghaction",
+	},
+
+	pattern = {
+		[".*%.github/workflows/.*%.ya?ml"] = "ghaction",
+		[".*%.github/actions/.*%.ya?ml"] = "ghaction",
+	},
+})
