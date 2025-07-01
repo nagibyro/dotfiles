@@ -6,44 +6,44 @@ vim.keymap.set("x", "p", [["_dP]])
 
 -- Nvim Tree
 vim.keymap.set(
-  "n",
-  "<C-n>",
-  ":NvimTreeFindFile<CR>",
-  { desc = "Open NvimTree at file in current buffer", silent = true }
+	"n",
+	"<C-n>",
+	":NvimTreeFindFile<CR>",
+	{ desc = "Open NvimTree at file in current buffer", silent = true }
 )
 vim.keymap.set(
-  "n",
-  "<leader>1",
-  '<cmd>lua require("nvim-tree").toggle(false, true)<cr>',
-  { desc = "Toggle NvimTree Window" }
+	"n",
+	"<leader>1",
+	'<cmd>lua require("nvim-tree").toggle(false, true)<cr>',
+	{ desc = "Toggle NvimTree Window" }
 )
 
 -- Telescope
 -- * File Navigation
 vim.keymap.set(
-  "n",
-  "<leader>fw",
-  '<cmd>lua require("telescope.builtin").grep_string({search = vim.fn.expand("<cword>")})<cr>',
-  { desc = "Grep for word under cursor" }
+	"n",
+	"<leader>fw",
+	'<cmd>lua require("telescope.builtin").grep_string({search = vim.fn.expand("<cword>")})<cr>',
+	{ desc = "Grep for word under cursor" }
 )
 vim.keymap.set("n", "<leader>ff", '<cmd>lua require("telescope.builtin").find_files()<cr>', { desc = "Find Files" })
 vim.keymap.set(
-  "n",
-  "<leader>fs",
-  '<cmd>lua require("telescope.builtin").live_grep()<cr>',
-  { desc = "Search contents of files" }
+	"n",
+	"<leader>fs",
+	'<cmd>lua require("telescope.builtin").live_grep()<cr>',
+	{ desc = "Search contents of files" }
 )
 vim.keymap.set(
-  "n",
-  "<leader>fo",
-  '<cmd>lua require("telescope.builtin").oldfiles()<cr>',
-  { desc = "Find recent files" }
+	"n",
+	"<leader>fo",
+	'<cmd>lua require("telescope.builtin").oldfiles()<cr>',
+	{ desc = "Find recent files" }
 )
 vim.keymap.set(
-  "n",
-  "<leader>fh",
-  '<cmd>lua require("telescope.builtin").help_tags()<cr>',
-  { desc = "Search neovim and plugin help pages" }
+	"n",
+	"<leader>fh",
+	'<cmd>lua require("telescope.builtin").help_tags()<cr>',
+	{ desc = "Search neovim and plugin help pages" }
 )
 vim.keymap.set("n", "<leader>fp", "<cmd>Telescope projects<cr>")
 
@@ -80,11 +80,13 @@ vim.keymap.set("n", "<leader>dx", "<cmd>VimspectorReset<cr>")
 vim.keymap.set("n", "<leader>dH", '<cmd>lua require("setup/vimspector").toggle_human_mode()<cr>')
 
 vim.keymap.set("n", "<leader>pd", function()
-  local current_file = vim.fn.expand("%")
+	local current_file = vim.fn.expand("%")
 
-  local python_utils = require("python-utils")
+	local python_utils = require("python-utils")
 
-  local dot_notation = python_utils.get_import_path(current_file)
+	local dot_notation = python_utils.get_import_path(current_file)
 
-  vim.notify(dot_notation, vim.log.levels.INFO, {title = "current python file dot"})
+	vim.notify(dot_notation, vim.log.levels.INFO, { title = "current python file dot" })
 end)
+
+vim.keymap.set("n", "<leader>ai", "<cmd>CodeCompanionChat Toggle<cr>")

@@ -37,7 +37,7 @@ return {
 				sh = { "shellcheck" },
 				yaml = { "yamllint" },
 				markdown = { "markdownlint" },
-        ghaction = { "actionlint" }
+				ghaction = { "actionlint" },
 			}
 
 			lint.linters.markdownlint = vim.tbl_deep_extend("force", lint.linters.markdownlint, {
@@ -47,23 +47,23 @@ return {
 				},
 			})
 
-			local lint_augroup = vim.api.nvim_create_augroup("lint", { clear = true })
+			-- local lint_augroup = vim.api.nvim_create_augroup("lint", { clear = true })
 
-			vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost", "InsertLeave" }, {
-				group = lint_augroup,
-				callback = function()
-					lint.try_lint()
-				end,
-			})
+			-- vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost", "InsertLeave" }, {
+			-- 	group = lint_augroup,
+			-- 	callback = function()
+			-- 		lint.try_lint()
+			-- 	end,
+			-- })
 
 			-- Add codespell linting for all file types
 			for _, linter_list in pairs(lint.linters_by_ft) do
 				table.insert(linter_list, "codespell")
 			end
 
-			if py_utils.venv_has("ruff") then
-				table.insert(lint.linters_by_ft.python, "ruff")
-			end
+			-- if py_utils.venv_has("ruff") then
+			-- 	table.insert(lint.linters_by_ft.python, "ruff")
+			-- end
 
 			-- I'm not using pylint in any project right now and apparently some
 			-- packages pull in pylint as a depedency???? Maybe istead of venv has we

@@ -172,7 +172,7 @@ return {
 			})
 			pcall(require("telescope").load_extension, "fzf")
 		end,
-		tag = "0.1.8",
+		-- tag = "0.1.x",
 		dependencies = {
 			{ "nvim-lua/plenary.nvim" },
 			{

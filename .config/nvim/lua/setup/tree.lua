@@ -1,16 +1,16 @@
 local function open_nvim_tree(data)
-  -- buffer is a directory
-  local directory = vim.fn.isdirectory(data.file) == 1
+	-- buffer is a directory
+	local directory = vim.fn.isdirectory(data.file) == 1
 
-  if not directory then
-    return
-  end
+	if not directory then
+		return
+	end
 
-  -- change to the directory
-  vim.cmd.cd(data.file)
+	-- change to the directory
+	vim.cmd.cd(data.file)
 
-  -- open the tree
-  require("nvim-tree.api").tree.open()
+	-- open the tree
+	require("nvim-tree.api").tree.open()
 end
 
 -- local function close_nvim_tree()
@@ -65,47 +65,48 @@ end
 -- })
 
 require("nvim-tree").setup({
-  update_cwd = true, --used for the project plugin to when switching projects
-  update_focused_file = {
-    --used for the project plugin to when switching projects
-    enable = true,
-    update_cwd = true,
-  },
-  git = {
-    enable = true,
-    ignore = false,
-  },
-  actions = {
-    open_file = {
-      quit_on_open = true,
-      resize_window = true,
-      window_picker = {
-        enable = false,
-      },
-    },
-  },
-  renderer = {
-    icons = {
-      webdev_colors = true,
-      show = {
-        file = true,
-        folder = true,
-        folder_arrow = true,
-        git = true,
-      },
-    },
-    special_files = {
-      "Cargo.toml",
-      "Makefile",
-      "README.md",
-      "readme.md",
-      "package.json",
-      "package.lock",
-      "poetry.lock",
-      "pyproject.toml",
-    },
-  },
-  view = {
-    adaptive_size = true,
-  },
+	update_cwd = true, --used for the project plugin to when switching projects
+	update_focused_file = {
+		--used for the project plugin to when switching projects
+		enable = true,
+		update_cwd = true,
+	},
+	git = {
+		enable = true,
+		ignore = false,
+	},
+	actions = {
+		open_file = {
+			eject = false,
+			quit_on_open = true,
+			resize_window = true,
+			window_picker = {
+				enable = false,
+			},
+		},
+	},
+	renderer = {
+		icons = {
+			webdev_colors = true,
+			show = {
+				file = true,
+				folder = true,
+				folder_arrow = true,
+				git = true,
+			},
+		},
+		special_files = {
+			"Cargo.toml",
+			"Makefile",
+			"README.md",
+			"readme.md",
+			"package.json",
+			"package.lock",
+			"poetry.lock",
+			"pyproject.toml",
+		},
+	},
+	view = {
+		adaptive_size = true,
+	},
 })

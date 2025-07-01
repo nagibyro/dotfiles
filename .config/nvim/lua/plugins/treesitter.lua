@@ -19,7 +19,7 @@ return {
 			-- withou the config function. so we call that here.
 			require("nvim-treesitter.configs").setup(opts)
 
-      vim.treesitter.language.register("yaml", "ghaction")
+			vim.treesitter.language.register("yaml", "ghaction")
 		end,
 		opts = {
 			playground = {
