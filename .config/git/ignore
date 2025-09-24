@@ -28,3 +28,5 @@ __pycache__/
 .rgignore
 
 .nvim.lua
+
+**/.claude/settings.local.json

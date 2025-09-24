@@ -4,20 +4,6 @@ vim.keymap.set("i", "jk", "<esc>", { desc = "Exit insert mode. Alt for [ESC]" })
 -- keep copied value when pasting over text
 vim.keymap.set("x", "p", [["_dP]])
 
--- Nvim Tree
-vim.keymap.set(
-	"n",
-	"<C-n>",
-	":NvimTreeFindFile<CR>",
-	{ desc = "Open NvimTree at file in current buffer", silent = true }
-)
-vim.keymap.set(
-	"n",
-	"<leader>1",
-	'<cmd>lua require("nvim-tree").toggle(false, true)<cr>',
-	{ desc = "Toggle NvimTree Window" }
-)
-
 -- Telescope
 -- * File Navigation
 vim.keymap.set(
@@ -45,8 +31,6 @@ vim.keymap.set(
 	'<cmd>lua require("telescope.builtin").help_tags()<cr>',
 	{ desc = "Search neovim and plugin help pages" }
 )
-vim.keymap.set("n", "<leader>fp", "<cmd>Telescope projects<cr>")
-
 vim.keymap.set("n", "<leader>b", "<c-^>") -- toggle between the alternative file buffer and current
 
 -- spelling
@@ -59,12 +43,6 @@ vim.keymap.set("n", "<leader>cs", '<cmd>lua require("telescope.builtin").lsp_doc
 vim.keymap.set("n", "<leader>cw", '<cmd>lua require("telescope.builtin").lsp_dynamic_workspace_symbols()<cr>')
 
 --Code trouble & hints
-vim.keymap.set("n", "<leader>xx", "<cmd>Trouble<cr>")
-vim.keymap.set("n", "<leader>xw", "<cmd>Trouble workspace_diagnostics<cr>")
-vim.keymap.set("n", "<leader>xd", "<cmd>Trouble document_diagnostics<cr>")
-vim.keymap.set("n", "<leader>xq", "<cmd>Trouble quickfix<cr>")
-vim.keymap.set("n", "<leader>xl", "<cmd>Trouble loclist<cr>")
-
 vim.keymap.set("n", "<leader>dG", '<cmd>lua require("setup/vimspector").generate_debug_profile()<cr>')
 vim.keymap.set("n", "<leader>dI", "<cmd>call vimspector#Install()<cr>")
 vim.keymap.set("n", "<leader>dU", "<cmd>call vimspector#Update()<cr>")

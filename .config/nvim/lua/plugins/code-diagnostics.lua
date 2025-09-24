@@ -1,6 +1,19 @@
 local py_utils = require("python-utils")
 return {
 	{
+		-- Adds git related signs to the gutter, as well as utilities for managing changes
+		"lewis6991/gitsigns.nvim",
+		opts = {
+			signs = {
+				add = { text = "+" },
+				change = { text = "~" },
+				delete = { text = "_" },
+				topdelete = { text = "‾" },
+				changedelete = { text = "~" },
+			},
+		},
+	},
+	{
 		-- parenthesis highlighting
 		"utilyre/sentiment.nvim",
 		version = "*",
@@ -17,11 +30,6 @@ return {
 	{
 		"NoahTheDuke/vim-just",
 		ft = { "just" },
-	},
-
-	{
-		"fladson/vim-kitty",
-		event = "VeryLazy",
 	},
 
 	{
@@ -47,23 +55,23 @@ return {
 				},
 			})
 
-			-- local lint_augroup = vim.api.nvim_create_augroup("lint", { clear = true })
+			local lint_augroup = vim.api.nvim_create_augroup("lint", { clear = true })
 
-			-- vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost", "InsertLeave" }, {
-			-- 	group = lint_augroup,
-			-- 	callback = function()
-			-- 		lint.try_lint()
-			-- 	end,
-			-- })
+			vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost", "InsertLeave" }, {
+				group = lint_augroup,
+				callback = function()
+					lint.try_lint()
+				end,
+			})
 
 			-- Add codespell linting for all file types
 			for _, linter_list in pairs(lint.linters_by_ft) do
 				table.insert(linter_list, "codespell")
 			end
 
-			-- if py_utils.venv_has("ruff") then
-			-- 	table.insert(lint.linters_by_ft.python, "ruff")
-			-- end
+			if py_utils.venv_has("ruff") then
+				table.insert(lint.linters_by_ft.python, "ruff")
+			end
 
 			-- I'm not using pylint in any project right now and apparently some
 			-- packages pull in pylint as a depedency???? Maybe istead of venv has we
@@ -121,5 +129,42 @@ return {
 				conform.format()
 			end, { desc = "Trigger formatting for current file" })
 		end,
+	},
+
+	{
+		"folke/trouble.nvim",
+		dependencies = "nvim-tree/nvim-web-devicons",
+		keys = {
+			{
+				"<leader>xx",
+				"<cmd>Trouble diagnostics toggle<cr>",
+				desc = "Diagnostics (Trouble)",
+			},
+			{
+				"<leader>xX",
+				"<cmd>Trouble diagnostics toggle filter.buf=0<cr>",
+				desc = "Buffer Diagnostics (Trouble)",
+			},
+			{
+				"<leader>cs",
+				"<cmd>Trouble symbols toggle focus=false<cr>",
+				desc = "Symbols (Trouble)",
+			},
+			{
+				"<leader>cl",
+				"<cmd>Trouble lsp toggle focus=false win.position=right<cr>",
+				desc = "LSP Definitions / references / ... (Trouble)",
+			},
+			{
+				"<leader>xL",
+				"<cmd>Trouble loclist toggle<cr>",
+				desc = "Location List (Trouble)",
+			},
+			{
+				"<leader>xQ",
+				"<cmd>Trouble qflist toggle<cr>",
+				desc = "Quickfix List (Trouble)",
+			},
+		},
 	},
 }

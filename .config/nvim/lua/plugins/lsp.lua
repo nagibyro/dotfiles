@@ -150,7 +150,7 @@ return {
 							diagnosticMode = "workspace", -- "openFilesOnly"
 							-- typeCheckingMode = "standard",
 							useLibraryCodeForTypes = true,
-							-- stubPath = vim.fn.stdpath("data") .. "/lazy/python-type-stubs",
+							stubPath = vim.fn.stdpath("data") .. "/lazy/python-type-stubs",
 						},
 					},
 				},
