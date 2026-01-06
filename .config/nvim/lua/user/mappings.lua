@@ -16,7 +16,7 @@ vim.keymap.set("n", "<leader>ff", '<cmd>lua require("telescope.builtin").find_fi
 vim.keymap.set(
 	"n",
 	"<leader>fs",
-	'<cmd>lua require("telescope.builtin").live_grep()<cr>',
+	'<cmd>lua require("telescope-multigrep").live_multigrep()<cr>',
 	{ desc = "Search contents of files" }
 )
 vim.keymap.set(
@@ -60,7 +60,7 @@ vim.keymap.set("n", "<leader>dH", '<cmd>lua require("setup/vimspector").toggle_h
 vim.keymap.set("n", "<leader>pd", function()
 	local current_file = vim.fn.expand("%")
 
-	local python_utils = require("python-utils")
+	local python_utils = require("utils.python")
 
 	local dot_notation = python_utils.get_import_path(current_file)
 

@@ -1,8 +1,8 @@
-local python_utils = require("python-utils")
+local python_utils = require("utils.python")
 vim.g.python3_host_prog = python_utils.find_host_python()
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-if not vim.loop.fs_stat(lazypath) then
+if not vim.uv.fs_stat(lazypath) then
 	vim.fn.system({
 		"git",
 		"clone",

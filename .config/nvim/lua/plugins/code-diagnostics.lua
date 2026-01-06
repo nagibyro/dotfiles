@@ -1,4 +1,4 @@
-local py_utils = require("python-utils")
+local py_utils = require("utils.python")
 return {
 	{
 		-- Adds git related signs to the gutter, as well as utilities for managing changes
@@ -144,11 +144,6 @@ return {
 				"<leader>xX",
 				"<cmd>Trouble diagnostics toggle filter.buf=0<cr>",
 				desc = "Buffer Diagnostics (Trouble)",
-			},
-			{
-				"<leader>cs",
-				"<cmd>Trouble symbols toggle focus=false<cr>",
-				desc = "Symbols (Trouble)",
 			},
 			{
 				"<leader>cl",
