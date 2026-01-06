@@ -7,6 +7,9 @@ return {
 		opts = {
 			view_options = {
 				show_hidden = true,
+				is_always_hidden = function(name, _)
+					return name == ".git" or name == "node_modules"
+				end,
 			},
 		},
 		-- Optional dependencies
@@ -21,9 +24,8 @@ return {
 		},
 	},
 	{
-		"benomahony/oil-git.nvim",
+		"refractalize/oil-git-status.nvim",
 		dependencies = { "stevearc/oil.nvim" },
-		-- No opts or config needed! Works automatically
 	},
 
 	-- Telescope
