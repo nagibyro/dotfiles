@@ -1,0 +1,11 @@
+{
+  "name": "CodeCompanion.nvim",
+  "version": "1.0.0",
+  "system_promt": "This project holds various dotfiles that I symlink into my home directory with GNU Stow this includes but is not limited to bashrc files, neovim config and and other tool configs.",
+  "groups": [
+    {
+      "name": "nvim config",
+      "system_prompt": "I've grouped my neovim config files into a group called \"${group_name}\". This configs control my neovim editor. The files are mostly lua configs.",
+    }
+  ]
+}

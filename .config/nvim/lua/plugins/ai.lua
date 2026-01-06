@@ -3,20 +3,34 @@ return {
 		"olimorris/codecompanion.nvim",
 		opts = {
 			adapters = {
-				anthropic = function()
-					return require("codecompanion.adapters").extend("anthropic", {
-						env = {
-							api_key = "cmd:op read op://dev/claude_api_key/credential --no-newline",
-						},
-					})
-				end,
+				http = {
+					anthropic = function()
+						return require("codecompanion.adapters").extend("anthropic", {
+							env = {
+								api_key = "cmd:op read op://dev/claude_api_key/credential --no-newline",
+							},
+						})
+					end,
+				},
+				acp = {
+					claude_code = function()
+						return require("codecompanion.adapters").extend("claude_code", {
+							env = {
+								CLAUDE_CODE_OAUTH_TOKEN = "CLAUDE_CODE_OAUTH_TOKEN",
+							},
+						})
+					end,
+				},
 			},
 			strategies = {
 				chat = {
-					adapter = "anthropic",
+					adapter = "claude_code",
 				},
 				inline = {
-					adapter = "anthropic",
+					adapter = "claude_code",
+				},
+				agent = {
+					adapter = "claude_code",
 				},
 			},
 		},

@@ -38,6 +38,10 @@ deactivate
 2. Install System Dependencies
 TBD
 
+3. Install AI dependencies (if using)
+- https://github.com/zed-industries/claude-code-acp
+    - see https://codecompanion.olimorris.dev/configuration/adapters#setup-claude-code-via-acp
+
 ### homebrew
 
 - To install run `brew bundle` from dotfiles directory
