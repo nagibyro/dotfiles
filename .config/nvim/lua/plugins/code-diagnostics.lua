@@ -107,7 +107,7 @@ return {
 					just = { "just" },
 					bash = { "shellcheck" },
 					sh = { "shellcheck" },
-					sql = { "sql_formatter" },
+					sql = { "sqlfmt" },
 					htmldjango = { "djlint" },
 					terraform = { "terraform_fmt" },
 					hcl = { "terraform_fmt" },
@@ -134,6 +134,10 @@ return {
 	{
 		"folke/trouble.nvim",
 		dependencies = "nvim-tree/nvim-web-devicons",
+		config = function()
+			require("trouble").setup({})
+		end,
+		cmd = "Trouble",
 		keys = {
 			{
 				"<leader>xx",

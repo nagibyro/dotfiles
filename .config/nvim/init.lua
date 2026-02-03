@@ -18,6 +18,7 @@ vim.g.mapleader = "," --lazy needs leader key before running setup
 require("user.options")
 require("user.mappings")
 require("lazy").setup("plugins")
+require("user.diagnostics")
 
 vim.api.nvim_set_hl(0, "MatchParen", {
 	bold = true,
