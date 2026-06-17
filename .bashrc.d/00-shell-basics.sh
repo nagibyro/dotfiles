@@ -10,7 +10,7 @@ export HISTCONTROL=ignoreboth:erasedups
 shopt -s histappend
 
 # After each command: write new lines, reload the merged file into memory
-export PROMPT_COMMAND="history -a; history -c; history -r${PROMPT_COMMAND:+; $PROMPT_COMMAND}"
+PROMPT_COMMAND="history -a; history -n${PROMPT_COMMAND:+; $PROMPT_COMMAND}"
 
 #navigation
 alias b='cd ..'
