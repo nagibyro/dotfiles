@@ -1,8 +1,6 @@
 cask_args appdir: '~/Applications'
 
-tap "homebrew/bundle"
-tap "homebrew/core"
-tap 'homebrew/services'
+tap "hashicorp/tap"
 
 ## System
 brew 'ncurses'
@@ -39,10 +37,7 @@ brew 'ripgrep'
 
 ## DevOps
 brew 'terraform'
-brew 'terraform-docs'
 brew 'tflint'
-brew 'tfenv'
-brew 'circleci'
 brew 'awscli'
 brew 'stow'
 

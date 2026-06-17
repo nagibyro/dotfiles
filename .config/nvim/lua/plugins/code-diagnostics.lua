@@ -113,6 +113,10 @@ return {
 					hcl = { "terraform_fmt" },
 					yaml = { "yamlfmt" },
 					markdown = { "mdformat" },
+					javascript = { "prettierd", "prettier" },
+					javascriptreact = { "prettierd", "prettier" },
+					typescript = { "prettierd", "prettier" },
+					typescriptreact = { "prettierd", "prettier" },
 				},
 				format_on_save = {
 					timeout_ms = 500,

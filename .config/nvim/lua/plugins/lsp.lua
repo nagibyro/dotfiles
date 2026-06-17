@@ -1,6 +1,5 @@
 vim.lsp.enable("basedpyright")
 vim.lsp.enable("lua_ls")
-vim.lsp.enable("ts_ls")
 vim.lsp.enable("bashls")
 vim.lsp.enable("eslint")
 vim.lsp.enable("cssls")
@@ -9,11 +8,11 @@ vim.lsp.enable("jsonls")
 vim.lsp.enable("awk_ls")
 vim.lsp.enable("ansiblels")
 vim.lsp.enable("esbonio")
-vim.lsp.enable("svelte")
 vim.lsp.enable("terraformls") -- note workspace/didChangeConfiguration is not supported by tf lsp
 vim.lsp.enable("html")
 vim.lsp.enable("yamlls")
 vim.lsp.enable("gh_actions_ls")
+vim.lsp.enable("tsgo")
 
 -- set lsp keymaps
 vim.api.nvim_create_autocmd("LspAttach", {

@@ -2,6 +2,7 @@ return {
 	{
 		"nvim-treesitter/nvim-treesitter",
 		version = false,
+		branch = "main",
 		dependencies = {
 			-- "nvim-treesitter/nvim-treesitter-textobjects",
 			-- "nvim-treesitter/nvim-treesitter-context",
@@ -9,23 +10,19 @@ return {
 		},
 		build = ":TSUpdate",
 		config = function(_, opts)
-			-- Config function is required for treesitter because it's special see
-			-- https://github.com/folke/lazy.nvim/issues/1011#issuecomment-1695857124
-			--
-			-- TLDR lazy-nvim when you don't have a config function tries to find the
-			-- module setup function at the root of the module aka
-			-- nvim-treesitter.setup() However treesitter's setup function is in a
-			-- submodule "nvim-treesitter.configs" and this just fails silently
-			-- withou the config function. so we call that here.
-			require("nvim-treesitter.configs").setup(opts)
-
 			vim.treesitter.language.register("yaml", "ghaction")
+			vim.api.nvim_create_autocmd("FileType", {
+				callback = function()
+					pcall(vim.treesitter.start)
+					vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+				end,
+			})
 		end,
 		opts = {
 			playground = {
 				enable = true,
 			},
-			highlight = { enable = true },
+			-- highlight = { enable = true },
 			rainbow = {
 				enable = true,
 				extended_mode = true, -- Also highlight non-bracket delimiters like html tags, boolean or table: lang -> boolean
@@ -102,9 +99,5 @@ return {
 	-- Automatically add closing tags for HTML and JSX
 	{
 		"windwp/nvim-ts-autotag",
-	},
-
-	{
-		"nvim-treesitter/playground",
 	},
 }
